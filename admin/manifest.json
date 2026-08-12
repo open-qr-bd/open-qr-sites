@@ -1,0 +1,13 @@
+{
+  "name": "Open QR অ্যাডমিন",
+  "short_name": "Open QR",
+  "description": "Open QR ক্লায়েন্ট ম্যানেজমেন্ট প্যানেল",
+  "start_url": "/admin/",
+  "scope": "/admin/",
+  "display": "standalone",
+  "background_color": "#F5FAF7",
+  "theme_color": "#0F9D58",
+  "icons": [
+    { "src": "/admin/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
