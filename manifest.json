@@ -1,0 +1,39 @@
+{
+  "name": "Open QR - স্মার্ট QR সমাধান",
+  "short_name": "Open QR",
+  "description": "বাংলাদেশের ব্যবসার জন্য স্মার্ট QR সমাধান - ডিজিটাল মেনু ও প্রোফাইল, কোনো অ্যাপ ছাড়াই",
+  "start_url": "/?source=pwa",
+  "id": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F5FAF7",
+  "theme_color": "#0F9D58",
+  "lang": "bn",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
