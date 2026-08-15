@@ -25,6 +25,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-s
 .reveal.in{opacity:1;transform:translateY(0);}
 .hero{position:relative;background:linear-gradient(180deg,var(--green-deep) 0%,var(--green-dark) 55%,var(--green) 100%);padding:34px 22px 62px;color:#fff;overflow:hidden;isolation:isolate;text-align:center;}
 .hero-pattern{position:absolute;inset:0;z-index:-1;opacity:.12;background-image:radial-gradient(circle,#fff 1.5px,transparent 1.5px);background-size:20px 20px;}
+.logo-img{width:56px;height:56px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 10px 22px -8px rgba(0,0,0,.4);background:#fff;}
 .badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
 .eyebrow{font-family:'Poppins',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:rgba(255,255,255,0.09);padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.18);}
 .status-pill{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;}
@@ -61,6 +62,22 @@ h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:30px;line-heigh
 .item-check{width:21px;height:21px;flex:none;border:2px solid var(--green-dark);border-radius:7px;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;color:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s ease,color .15s ease;}
 .item-check.checked{background:var(--green-dark);color:#fff;}
 .item.checked{background:rgba(10,107,61,0.06);border-radius:8px;}
+.card-gold{background:linear-gradient(150deg,var(--amber),#C9860F);color:#fff;}
+.card-gold .section-title{color:#fff;}
+.row-flex{display:flex;justify-content:space-between;padding:7px 0;font-size:13.5px;border-bottom:1px solid rgba(255,255,255,.28);}
+.row-flex:last-child{border-bottom:none;}
+.card-maroon{background:linear-gradient(150deg,var(--green-dark),var(--green-deep));color:#fff;}
+.card-maroon .section-title{color:var(--amber);}
+.row-plain{font-size:13px;padding:6px 0;line-height:1.55;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.live-tag{font-size:9.5px;background:var(--amber);color:var(--green-deep);padding:1px 7px;border-radius:100px;font-weight:700;font-family:'Poppins',sans-serif;}
+.review-card{border-bottom:1px solid var(--line);padding:12px 0;}
+.review-card:last-child{border-bottom:none;padding-bottom:16px;}
+.review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.review-name{font-weight:600;font-size:13.5px;}
+.review-stars{color:var(--amber);font-size:12px;letter-spacing:1px;}
+.review-text{font-size:12.5px;color:#5a4c40;line-height:1.6;}
+.booking-p{font-size:13px;line-height:1.7;color:#354339;margin-bottom:14px;}
+.booking-btn{display:block;text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:13.5px;background:var(--green-dark);color:#fff;padding:13px;border-radius:14px;text-decoration:none;}
 .pay-grid{display:flex;gap:8px;margin-top:8px;padding-bottom:14px;}
 .pay-card{flex:1;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;}
 .pay-card .dot{width:14px;height:14px;border-radius:50%;margin:0 auto 6px;}
@@ -112,6 +129,7 @@ function waLink(n,m){return"https://wa.me/"+n+"?text="+encodeURIComponent(m);}
 function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(showToast._timer);showToast._timer=setTimeout(()=>t.classList.remove('show'),1800);}
 function copyText(t){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>showToast("নম্বর কপি হয়েছে: "+t));}else{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast("নম্বর কপি হয়েছে: "+t);}catch(e){showToast(t);}document.body.removeChild(ta);}}
 function isOpenNow(sch){if(!sch)return true;const now=new Date();const day=now.getDay();const mins=now.getHours()*60+now.getMinutes();const openMins=(sch.openHour||0)*60+(sch.openMinute||0);const closeMins=(sch.closeHour||23)*60+(sch.closeMinute||59);if(sch.closedWeekday===day)return false;return mins>=openMins&&mins<closeMins;}
+function isWithinHourWindow(s,e){const h=new Date().getHours();return h>=s&&h<e;}
 
 function renderState(emoji,title,msg){
   root.innerHTML=`<div class="state-screen"><div class="emoji">${emoji}</div><h2 style="font-family:'Baloo Da 2',sans-serif;color:var(--green-deep);font-size:18px;">${title}</h2><p>${msg}</p><a href="https://openqr-bd.netlify.app/">Open QR হোমপেজে যান</a></div>`;
@@ -122,6 +140,7 @@ function renderPage(slug,d){
   const phoneTel=d.phoneTel||('+880'+(d.phone||'').replace(/^0/,''));
   const whatsapp=d.whatsapp||('880'+(d.phone||'').replace(/^0/,''));
   const orderMsg=d.whatsappOrderMsg||'আসসালামু আলাইকুম, আমি জানতে চাই।';
+  const bookingMsg=d.whatsappBookingMsg||'আসসালামু আলাইকুম, আমি একটি টেবিল বুক করতে চাই।';
   const sections=d.sections||[];
   const open=isOpenNow(d.schedule);
 
@@ -130,6 +149,7 @@ function renderPage(slug,d){
       ${(d.ticker&&d.ticker.length)?`<div class="ticker"><div class="ticker-track" id="ticker-track"></div></div>`:''}
       <div class="hero">
         <div class="hero-pattern"></div>
+        ${d.logoUrl?`<img class="logo-img" src="${d.logoUrl}" alt="logo">`:''}
         <div class="badge-row">${d.eyebrow?`<span class="eyebrow">${d.eyebrow}</span>`:''}<span class="status-pill ${open?'open':'closed'}"><span class="status-dot"></span>${open?'এখন খোলা':'এখন বন্ধ'}</span></div>
         <h1>${d.name||slug}</h1>
         ${d.tagline?`<div class="tagline">${d.tagline}</div>`:''}
@@ -169,6 +189,7 @@ function renderPage(slug,d){
 
   const nav=document.getElementById('nav-tabs');
   const sroot=document.getElementById('sections-root');
+
   sections.forEach(sec=>{
     const a=document.createElement('a');a.className='tab';a.href='#'+sec.id;a.dataset.target=sec.id;a.textContent=(sec.icon||'📋')+' '+sec.title;nav.appendChild(a);
     const wrap=document.createElement('section');wrap.className='section-card reveal';wrap.id=sec.id;
@@ -176,9 +197,33 @@ function renderPage(slug,d){
     sroot.appendChild(wrap);
   });
 
+  if(d.bestSellers&&d.bestSellers.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal card-gold';
+    wrap.innerHTML=`<div class="section-title">🌟 সর্বাধিক অর্ডারকৃত</div>`+d.bestSellers.map(([l,v])=>`<div class="row-flex"><span>${l}</span><span>${v}</span></div>`).join('');
+    sroot.appendChild(wrap);
+  }
+
+  if(d.offers&&d.offers.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal card-maroon';
+    wrap.innerHTML=`<div class="section-title">🎉 আজকের বিশেষ অফার</div>`+d.offers.map(o=>{const live=o.liveWindow&&isWithinHourWindow(o.liveWindow[0],o.liveWindow[1])?'<span class="live-tag">🔥 এখন সক্রিয়</span>':'';return `<div class="row-plain">${o.text} ${live}</div>`;}).join('');
+    sroot.appendChild(wrap);
+  }
+
   if(d.payments&&d.payments.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
     wrap.innerHTML=`<div class="section-title">💳 বিল পরিশোধ করুন</div><div class="pay-grid">${d.payments.filter(p=>p.number).map(p=>`<div class="pay-card" data-number="${p.number}"><div class="dot" style="background:${p.color||'#0F9D58'};"></div><b>${p.name}</b><span>${p.number}</span></div>`).join('')}</div><div class="pay-hint">নম্বরে ট্যাপ করলে কপি হয়ে যাবে</div>`;
+    sroot.appendChild(wrap);
+  }
+
+  if(d.reviews&&d.reviews.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">💬 কাস্টমার রিভিউ</div>`+d.reviews.map(r=>`<div class="review-card"><div class="review-top"><span class="review-name">${r.name}</span><span class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span></div><div class="review-text">${r.text}</div></div>`).join('');
+    sroot.appendChild(wrap);
+  }
+
+  if(d.bookingText){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">🎟️ টেবিল বুকিং</div><div class="booking-p">${d.bookingText}</div><a class="booking-btn" href="${waLink(whatsapp,bookingMsg)}" target="_blank" rel="noopener">💬 WhatsApp-এ টেবিল বুক করুন</a>`;
     sroot.appendChild(wrap);
   }
 
@@ -237,4 +282,4 @@ else{
 }
 </script>
 </body>
-</html>      
+</html>
