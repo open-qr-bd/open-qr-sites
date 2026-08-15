@@ -3,254 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open QR — বাংলাদেশের ব্যবসার জন্য স্মার্ট QR সমাধান</title>
-<meta name="description" content="একটি QR কোডেই আপনার ব্যবসার মেনু, পণ্য, মূল্য, অফার ও যোগাযোগ — কোনো অ্যাপ ছাড়াই।">
-<meta property="og:title" content="Open QR — স্মার্ট QR সমাধান">
-<meta property="og:description" content="একটি QR কোডেই আপনার ব্যবসার সম্পূর্ণ ডিজিটাল পরিচয়।">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='10' fill='%2314804A'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%23F0A202'/%3E%3Crect x='28' y='10' width='10' height='10' fill='%23F0A202'/%3E%3Crect x='10' y='28' width='10' height='10' fill='%23F0A202'/%3E%3C/svg%3E">
+<title>Open QR — ডিজিটাল প্রোফাইল</title>
+<meta name="description" content="Open QR দিয়ে বানানো একটি স্মার্ট ডিজিটাল ব্যবসায়িক প্রোফাইল">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --green:#0F9D58; --green-dark:#0A6B3D; --green-deep:#073F24; --green-light:#3FC17E;
-    --amber:#F5A623; --ink:#122017; --cream:#F5FAF7; --paper:#FFFFFF;
-    --line:rgba(18,32,23,0.08); --shadow:0 12px 34px -14px rgba(10,107,61,0.28);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
-  body{ background:var(--cream); color:var(--ink); font-family:'Hind Siliguri',sans-serif; display:flex; justify-content:center; padding:0 0 50px; }
-  .app{ width:100%; max-width:430px; background:var(--cream); min-height:100vh; }
-  .nav-wrap{ position:sticky; top:0; z-index:30; background:rgba(245,250,247,0.86); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
-  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; }
-  .nav-brand{ font-family:'Baloo Da 2',sans-serif; font-weight:800; font-size:16px; color:var(--green-deep); display:flex; align-items:center; gap:7px; }
-  .nav-brand .dot{ width:8px; height:8px; border-radius:2px; background:var(--amber); }
-  .nav-links{ display:flex; gap:14px; }
-  .nav-links a{ font-family:'Poppins',sans-serif; font-size:11px; font-weight:500; color:var(--green-dark); text-decoration:none; }
-  .hero{
-    position:relative; overflow:hidden; isolation:isolate;
-    background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-dark) 55%, var(--green) 100%);
-    color:#fff; padding:36px 20px 64px; text-align:center;
-  }
-  .blob{ position:absolute; border-radius:50%; filter:blur(40px); opacity:.35; z-index:-1; }
-  .blob1{ width:220px; height:220px; background:var(--amber); top:-80px; right:-60px; }
-  .blob2{ width:180px; height:180px; background:var(--green-light); bottom:-60px; left:-50px; }
-  .hero-pattern{ position:absolute; inset:0; z-index:-1; opacity:.1; background-image:radial-gradient(circle,#fff 1.4px,transparent 1.4px); background-size:20px 20px; }
-  .scan-frame{ position:relative; width:150px; height:150px; margin:8px auto 22px; }
-  .scan-frame .corner{ position:absolute; width:24px; height:24px; border:3px solid var(--amber); }
-  .scan-frame .tl{ top:0; left:0; border-right:none; border-bottom:none; border-radius:10px 0 0 0; }
-  .scan-frame .tr{ top:0; right:0; border-left:none; border-bottom:none; border-radius:0 10px 0 0; }
-  .scan-frame .bl{ bottom:0; left:0; border-right:none; border-top:none; border-radius:0 0 0 10px; }
-  .scan-frame .br{ bottom:0; right:0; border-left:none; border-top:none; border-radius:0 0 10px 0; }
-  .scan-frame .qricon{ position:absolute; inset:20px; display:flex; align-items:center; justify-content:center; }
-  .scan-line{ position:absolute; left:6%; right:6%; height:2px; background:linear-gradient(90deg,transparent,var(--amber),transparent); box-shadow:0 0 12px var(--amber); animation:scan 2.6s ease-in-out infinite; }
-  @keyframes scan{ 0%,100%{ top:12%; opacity:0; } 15%{ opacity:1; } 50%{ top:88%; opacity:1; } 85%{ opacity:1; } }
-  .eyebrow{ display:inline-block; font-family:'Poppins',sans-serif; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--amber); background:rgba(255,255,255,0.09); border:1px solid rgba(255,255,255,.18); padding:5px 12px; border-radius:100px; margin-bottom:16px; }
-  h1{ font-family:'Baloo Da 2',sans-serif; font-weight:800; font-size:27px; line-height:1.3; }
-  h1 span{ color:var(--amber); }
-  .hero-sub{ font-size:13px; color:#DFF3E8; margin-top:12px; max-width:88%; margin-left:auto; margin-right:auto; line-height:1.65; }
-  .hero-cta{ display:flex; gap:10px; justify-content:center; margin-top:22px; }
-  .hcta{ font-family:'Poppins',sans-serif; font-weight:600; font-size:12.5px; padding:12px 18px; border-radius:100px; text-decoration:none; }
-  .hcta.solid{ background:var(--amber); color:var(--green-deep); box-shadow:0 10px 20px -8px rgba(245,166,35,.5); }
-  .hcta.ghost{ background:rgba(255,255,255,.08); color:#fff; border:1px solid rgba(255,255,255,.3); }
-  .feature-strip{
-    position:relative; margin:-34px 18px 0; z-index:5;
-    background:rgba(255,255,255,0.75); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-    border:1px solid rgba(255,255,255,0.6); border-radius:18px; box-shadow:var(--shadow);
-    display:flex; overflow:hidden;
-  }
-  .feature-strip div{ flex:1; text-align:center; padding:15px 4px; font-size:10px; font-weight:600; color:var(--green-deep); }
-  .feature-strip .fi{ font-size:19px; display:block; margin-bottom:5px; }
-  .section{ margin:30px 18px 0; scroll-margin-top:64px; }
-  .section-head{ display:flex; align-items:center; gap:9px; margin-bottom:14px; }
-  .section-head .emoji-badge{ width:34px; height:34px; border-radius:10px; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:16px; flex:none; }
-  .section-title{ font-family:'Baloo Da 2',sans-serif; font-weight:700; font-size:19px; color:var(--green-deep); }
-  .card{ background:var(--paper); border-radius:18px; box-shadow:var(--shadow); padding:18px; }
-  .biz-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-  .biz-tile{ background:var(--paper); border-radius:16px; padding:14px 12px; box-shadow:var(--shadow); }
-  .biz-tile .icon-chip{ width:36px; height:36px; border-radius:10px; background:linear-gradient(150deg,var(--green-light),var(--green)); display:flex; align-items:center; justify-content:center; font-size:17px; margin-bottom:9px; }
-  .biz-tile b{ font-size:12px; font-weight:600; display:block; line-height:1.35; margin-bottom:3px; }
-  .biz-tile span{ font-size:10px; color:#5a6b60; line-height:1.4; display:block; }
-  .tabs2{ display:flex; gap:8px; margin-bottom:14px; }
-  .tab2{ flex:1; text-align:center; padding:10px; border-radius:100px; font-family:'Poppins',sans-serif; font-size:12px; font-weight:600; background:var(--cream); color:var(--green-dark); border:1px solid var(--line); cursor:pointer; transition:all .2s ease; }
-  .tab2.active{ background:var(--green); color:#fff; border-color:var(--green); box-shadow:0 6px 14px -6px rgba(10,107,61,.5); }
-  .benefit-panel{ display:none; }
-  .benefit-panel.active{ display:block; animation:fadein .3s ease; }
-  @keyframes fadein{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
-  .benefit-row{ display:flex; gap:9px; align-items:flex-start; font-size:13px; padding:9px 0; border-bottom:1px dashed var(--line); }
-  .benefit-row:last-child{ border-bottom:none; }
-  .benefit-row .dot{ color:var(--green); font-weight:700; flex:none; }
-  .steps{ display:flex; flex-direction:column; }
-  .step{ display:flex; gap:13px; padding:15px 0; border-bottom:1px solid var(--line); position:relative; }
-  .step:last-child{ border-bottom:none; }
-  .step-num{ width:32px; height:32px; border-radius:50%; background:linear-gradient(150deg,var(--green-light),var(--green)); color:#fff; font-family:'Poppins',sans-serif; font-weight:700; font-size:13.5px; display:flex; align-items:center; justify-content:center; flex:none; box-shadow:0 6px 14px -6px rgba(10,107,61,.5); }
-  .step b{ font-size:13.5px; display:block; margin-bottom:3px; }
-  .step p{ font-size:12px; color:#5a6b60; line-height:1.6; }
-  .about-p{ font-size:13px; line-height:1.8; color:#354339; margin-bottom:10px; }
-  .about-p:last-child{ margin-bottom:0; }
-  .demo-card{ position:relative; background:linear-gradient(150deg,var(--amber),#D6890A); border-radius:20px; padding:22px; color:#fff; text-align:center; box-shadow:var(--shadow); overflow:hidden; }
-  .demo-card::before{ content:""; position:absolute; width:140px; height:140px; background:rgba(255,255,255,.12); border-radius:50%; top:-50px; right:-40px; }
-  .demo-card .section-title{ color:#fff; }
-  .demo-card p{ font-size:12.5px; margin:10px 0 18px; color:#FFF3DC; line-height:1.65; position:relative; }
-  .demo-btn{ position:relative; display:inline-block; background:#fff; color:#B8720A; font-family:'Poppins',sans-serif; font-weight:700; font-size:13px; padding:13px 26px; border-radius:100px; text-decoration:none; box-shadow:0 10px 24px -10px rgba(0,0,0,.35); }
-  .cta-row{ display:flex; gap:10px; margin-top:16px; }
-  .cta{ flex:1; text-align:center; font-family:'Poppins',sans-serif; font-weight:600; font-size:13px; padding:14px; border-radius:14px; text-decoration:none; }
-  .cta.primary{ background:var(--green); color:#fff; box-shadow:0 10px 20px -10px rgba(10,107,61,.6); }
-  .cta.secondary{ background:var(--cream); color:var(--green-dark); border:1px solid var(--line); }
-  footer{ padding:32px 18px 10px; text-align:center; }
-  .footer-contact{ font-size:12.5px; color:#5a6b60; line-height:2.1; margin-bottom:16px; }
-  .footer-contact a{ color:var(--green-dark); text-decoration:none; font-weight:600; }
-  .powered{ font-family:'Poppins',sans-serif; font-size:10px; color:#9caa9f; }
-  .powered b{ color:var(--green-dark); }
-  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
+:root{--green:#0F9D58;--green-dark:#0A6B3D;--green-deep:#073F24;--green-light:#3FC17E;--amber:#F5A623;--ink:#122017;--cream:#F5FAF7;--paper:#FFFFFF;--line:rgba(18,32,23,0.09);--shadow:0 10px 30px -12px rgba(10,107,61,0.22);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-serif;display:flex;justify-content:center;padding:0 0 60px;}
+.app{width:100%;max-width:430px;background:var(--cream);min-height:100vh;position:relative;}
+.state-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px;text-align:center;}
+.state-screen .emoji{font-size:44px;}
+.state-screen p{font-size:13.5px;color:#5a6b60;line-height:1.7;}
+.state-screen a{font-family:'Poppins',sans-serif;font-weight:600;font-size:13px;color:var(--green-dark);text-decoration:none;border:1px solid var(--line);padding:10px 18px;border-radius:100px;}
+.ticker{background:var(--green-deep);color:var(--amber);overflow:hidden;white-space:nowrap;padding:7px 0;font-family:'Poppins',sans-serif;font-size:11px;font-weight:500;}
+.ticker-track{display:inline-block;padding-left:100%;animation:ticker-scroll 22s linear infinite;}
+.ticker-track span{margin-right:36px;}
+@keyframes ticker-scroll{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+.hero{position:relative;background:linear-gradient(180deg,var(--green-deep) 0%,var(--green-dark) 55%,var(--green) 100%);padding:34px 22px 62px;color:#fff;overflow:hidden;isolation:isolate;text-align:center;}
+.hero-pattern{position:absolute;inset:0;z-index:-1;opacity:.12;background-image:radial-gradient(circle,#fff 1.5px,transparent 1.5px);background-size:20px 20px;}
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
+.eyebrow{font-family:'Poppins',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:rgba(255,255,255,0.09);padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.18);}
+.status-pill{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;}
+.status-pill.open{background:rgba(60,180,120,.18);color:#8FE3B8;border:1px solid rgba(143,227,184,.35);}
+.status-pill.closed{background:rgba(255,255,255,.1);color:#EFDFC9;border:1px solid rgba(255,255,255,.2);}
+.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
+h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:30px;line-height:1.15;}
+.tagline{margin-top:9px;font-size:13.5px;color:#DFF3E8;max-width:88%;margin-left:auto;margin-right:auto;line-height:1.6;}
+.info-card{position:relative;margin:-38px 18px 0;background:var(--paper);border-radius:18px;box-shadow:var(--shadow);display:flex;overflow:hidden;z-index:3;}
+.info-card a{flex:1;text-align:center;padding:14px 4px 12px;font-size:10.5px;color:var(--ink);text-decoration:none;border-right:1px solid var(--line);font-family:'Hind Siliguri',sans-serif;}
+.info-card>:last-child{border-right:none;}
+.info-card .ic{font-size:17px;display:block;margin-bottom:4px;}
+.search-wrap{padding:16px 16px 0;}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:11px 14px;box-shadow:var(--shadow);}
+.search-box input{border:none;outline:none;flex:1;font-family:'Hind Siliguri',sans-serif;font-size:13.5px;background:transparent;color:var(--ink);}
+.search-box input::placeholder{color:#a2b0a6;}
+.search-clear{display:none;border:none;background:var(--cream);color:var(--green-dark);width:20px;height:20px;border-radius:50%;font-size:12px;cursor:pointer;}
+.search-clear.show{display:block;}
+.no-results{display:none;text-align:center;padding:24px 16px;color:#a2b0a6;font-size:13px;}
+.no-results.show{display:block;}
+.nav-wrap{position:sticky;top:0;z-index:20;background:rgba(245,250,247,0.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:14px;border-bottom:1px solid var(--line);}
+.tabs{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:none;font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:9px 14px;border-radius:100px;background:var(--paper);color:var(--green-dark);white-space:nowrap;border:1px solid var(--line);text-decoration:none;cursor:pointer;}
+.tab.active{background:var(--green);color:#fff;border-color:var(--green);box-shadow:0 6px 14px -6px rgba(10,107,61,0.5);}
+.section-card{background:var(--paper);margin:16px 16px 0;border-radius:18px;padding:18px 18px 6px;box-shadow:var(--shadow);scroll-margin-top:74px;}
+.section-card.hidden{display:none;}
+.section-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:18px;color:var(--green-deep);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
+.item:last-child{border-bottom:none;}
+.item.hidden{display:none;}
+.item-name{font-weight:500;font-size:14.5px;flex:1;}
+.item-price{font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;color:var(--green-dark);white-space:nowrap;background:rgba(10,107,61,0.08);padding:3px 9px;border-radius:100px;}
+.item-check{width:21px;height:21px;flex:none;border:2px solid var(--green-dark);border-radius:7px;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;color:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s ease,color .15s ease;}
+.item-check.checked{background:var(--green-dark);color:#fff;}
+.item.checked{background:rgba(10,107,61,0.06);border-radius:8px;}
+.pay-grid{display:flex;gap:8px;margin-top:8px;padding-bottom:14px;}
+.pay-card{flex:1;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.pay-card .dot{width:14px;height:14px;border-radius:50%;margin:0 auto 6px;}
+.pay-card b{font-size:11.5px;display:block;margin-bottom:3px;}
+.pay-card span{font-size:10.5px;color:#7a8a7d;}
+.pay-hint{font-size:9.5px;color:#a2b0a6;margin-top:6px;text-align:center;}
+.about-p{font-size:13px;line-height:1.75;margin-bottom:10px;color:#354339;}
+.why-grid{display:flex;flex-direction:column;gap:7px;padding-bottom:16px;}
+.why-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;}
+.why-row .tick{color:var(--green-dark);font-weight:700;flex:none;}
+footer{padding:26px 18px 90px;}
+.cta-row{display:flex;gap:10px;margin-bottom:16px;}
+.cta{flex:1;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;text-align:center;padding:13px 8px;border-radius:14px;text-decoration:none;border:none;cursor:pointer;}
+.cta.primary{background:var(--green);color:#fff;box-shadow:0 10px 20px -10px rgba(10,107,61,.6);}
+.cta.secondary{background:var(--paper);color:var(--green-dark);border:1px solid var(--line);}
+.qr-box{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);}
+.qr-box img{width:68px;height:68px;border-radius:10px;}
+.qr-text{font-size:11px;color:#7a8a7d;line-height:1.5;}
+.qr-text b{color:var(--ink);display:block;font-size:12.5px;margin-bottom:2px;}
+.powered{text-align:center;margin-top:20px;font-family:'Poppins',sans-serif;font-size:10px;color:#a2b0a6;line-height:1.7;}
+.powered b{color:var(--green-dark);font-size:11px;}
+.spacer{height:14px;}
+.fab-col{position:fixed;right:18px;bottom:22px;display:flex;flex-direction:column;gap:10px;z-index:40;align-items:flex-end;}
+.fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 12px 24px -8px rgba(0,0,0,.35);border:none;cursor:pointer;}
+.fab.call{background:var(--green-dark);color:#fff;}
+.fab.wa{background:#25D366;color:#fff;}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:'Poppins',sans-serif;font-size:12.5px;padding:10px 18px;border-radius:100px;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:50;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.order-bar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(140%);width:calc(100% - 32px);max-width:398px;background:var(--green-deep);color:#fff;border-radius:16px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 18px 34px -12px rgba(7,63,36,0.6);z-index:46;transition:transform .3s ease;font-family:'Poppins',sans-serif;}
+.order-bar.show{transform:translateX(-50%) translateY(0);}
+.order-bar-info{font-size:11.5px;color:#DFF3E8;line-height:1.5;}
+.order-bar-info b{font-size:14px;display:block;color:#fff;font-family:'Baloo Da 2',sans-serif;}
+.order-bar button{flex:none;font-family:'Poppins',sans-serif;font-weight:700;font-size:12.5px;background:var(--amber);color:var(--green-deep);border:none;padding:11px 16px;border-radius:100px;cursor:pointer;white-space:nowrap;}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="nav-wrap">
-    <div class="nav-inner">
-      <div class="nav-brand"><span class="dot"></span>Open QR</div>
-      <div class="nav-links">
-        <a href="#sec-who">কার জন্য</a>
-        <a href="#sec-how">কিভাবে</a>
-        <a href="#sec-demo">ডেমো</a>
-        <a href="#sec-contact">যোগাযোগ</a>
-      </div>
-    </div>
-  </div>
-  <div class="hero">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="hero-pattern"></div>
-    <span class="eyebrow">বাংলাদেশের ব্যবসার জন্য</span>
-    <div class="scan-frame">
-      <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
-      <div class="scan-line"></div>
-      <div class="qricon">
-        <svg viewBox="0 0 100 100" width="88%" height="88%">
-          <rect x="8" y="8" width="26" height="26" fill="none" stroke="#fff" stroke-width="5"/>
-          <rect x="66" y="8" width="26" height="26" fill="none" stroke="#fff" stroke-width="5"/>
-          <rect x="8" y="66" width="26" height="26" fill="none" stroke="#fff" stroke-width="5"/>
-          <rect x="17" y="17" width="8" height="8" fill="#fff"/>
-          <rect x="75" y="17" width="8" height="8" fill="#fff"/>
-          <rect x="17" y="75" width="8" height="8" fill="#fff"/>
-          <rect x="46" y="8" width="6" height="6" fill="#fff"/>
-          <rect x="58" y="46" width="6" height="6" fill="#fff"/>
-          <rect x="46" y="46" width="6" height="6" fill="#fff"/>
-          <rect x="46" y="58" width="6" height="6" fill="#fff"/>
-          <rect x="46" y="70" width="6" height="6" fill="#fff"/>
-          <rect x="70" y="70" width="16" height="16" fill="#fff"/>
-          <rect x="70" y="46" width="6" height="6" fill="#fff"/>
-        </svg>
-      </div>
-    </div>
-    <h1>আপনার ব্যবসাকে করুন<br><span>সহজ, স্মার্ট ও ডিজিটাল</span></h1>
-    <div class="hero-sub">একটি QR কোড স্ক্যান করেই কাস্টমার দেখবেন আপনার মেনু, পণ্য, মূল্য, অফার ও যোগাযোগের সব তথ্য — কোনো অ্যাপ ছাড়াই।</div>
-    <div class="hero-cta">
-      <a class="hcta solid" href="#sec-contact">🚀 শুরু করুন</a>
-      <a class="hcta ghost" href="#sec-demo">👀 ডেমো দেখুন</a>
-    </div>
-  </div>
-  <div class="feature-strip">
-    <div><span class="fi">📱</span>ডিজিটাল QR মেনু</div>
-    <div><span class="fi">🏪</span>সব ব্যবসার জন্য</div>
-    <div><span class="fi">⚡</span>সহজ আপডেট</div>
-  </div>
-  <div class="section reveal" id="sec-who">
-    <div class="section-head"><span class="emoji-badge">🎯</span><span class="section-title">কার কার জন্য Open QR?</span></div>
-    <div class="biz-grid">
-      <div class="biz-tile"><div class="icon-chip">🍔</div><b>রেস্টুরেন্ট ও ক্যাফে</b><span>ডিজিটাল মেনু ও অফার</span></div>
-      <div class="biz-tile"><div class="icon-chip">🛍️</div><b>মুদি ও সুপারশপ</b><span>পণ্য ও প্রাইস লিস্ট</span></div>
-      <div class="biz-tile"><div class="icon-chip">👕</div><b>ফ্যাশন বুটিক</b><span>পোশাকের ক্যাটালগ</span></div>
-      <div class="biz-tile"><div class="icon-chip">💊</div><b>ফার্মেসি</b><span>ঔষধের তালিকা</span></div>
-      <div class="biz-tile"><div class="icon-chip">✂️</div><b>সেলুন ও পার্লার</b><span>সার্ভিস ও প্যাকেজ রেট</span></div>
-      <div class="biz-tile"><div class="icon-chip">📱</div><b>ইলেকট্রনিক্স শপ</b><span>মডেল ও প্রাইস লিস্ট</span></div>
-      <div class="biz-tile"><div class="icon-chip">👟</div><b>জুতার দোকান</b><span>ব্র্যান্ড ক্যাটালগ</span></div>
-      <div class="biz-tile"><div class="icon-chip">🧁</div><b>বেকারি ও মিষ্টি</b><span>আইটেম লিস্ট</span></div>
-      <div class="biz-tile"><div class="icon-chip">🐟</div><b>কাঁচাবাজার</b><span>দৈনিক তাজা পণ্য</span></div>
-      <div class="biz-tile"><div class="icon-chip">🚗</div><b>কার সার্ভিসিং</b><span>প্যাকেজ রেট</span></div>
-    </div>
-  </div>
-  <div class="section reveal" id="sec-why">
-    <div class="section-head"><span class="emoji-badge">💡</span><span class="section-title">কেন Open QR প্রয়োজন?</span></div>
-    <div class="card">
-      <div class="tabs2">
-        <div class="tab2 active" data-panel="panel-owner">দোকান মালিকদের সুবিধা</div>
-        <div class="tab2" data-panel="panel-customer">কাস্টমারদের সুবিধা</div>
-      </div>
-      <div class="benefit-panel active" id="panel-owner">
-        <div class="benefit-row"><span class="dot">✓</span>শূন্য প্রিন্টিং খরচ — বারবার মেনু ছাপানোর ঝামেলা ও খরচ চিরতরে বন্ধ</div>
-        <div class="benefit-row"><span class="dot">✓</span>ইনস্ট্যান্ট আপডেট — দাম বদলালে সাথে সাথে ডিজিটাল ফাইল আপডেট</div>
-        <div class="benefit-row"><span class="dot">✓</span>সহজ পরিচালনা — কাউন্টারে দীর্ঘ সময় বোঝানোর দরকার নেই</div>
-        <div class="benefit-row"><span class="dot">✓</span>প্রফেশনাল ব্র্যান্ড ইমেজ — প্রতিযোগীদের চেয়ে এক ধাপ এগিয়ে</div>
-        <div class="benefit-row"><span class="dot">✓</span>অফার প্রচার — নতুন অফার সহজেই QR-এর মাধ্যমে সবার কাছে</div>
-      </div>
-      <div class="benefit-panel" id="panel-customer">
-        <div class="benefit-row"><span class="dot">✓</span>দ্রুত ও স্পর্শহীন অভিজ্ঞতা — শুধু ক্যামেরায় স্ক্যান</div>
-        <div class="benefit-row"><span class="dot">✓</span>সহজ ও পরিষ্কার ভিউ — স্পষ্ট ডিজিটাল ফরম্যাট</div>
-        <div class="benefit-row"><span class="dot">✓</span>কাউন্টারে অপেক্ষার অবসান — ভিড়ের মধ্যেও নিজের পছন্দ বেছে নেওয়া যায়</div>
-        <div class="benefit-row"><span class="dot">✓</span>স্মার্ট ও আরামদায়ক শপিং — সহজেই সিদ্ধান্ত নেওয়া যায়</div>
-      </div>
-    </div>
-  </div>
-  <div class="section reveal" id="sec-how">
-    <div class="section-head"><span class="emoji-badge">⚙️</span><span class="section-title">Open QR কিভাবে কাজ করে?</span></div>
-    <div class="card">
-      <div class="steps">
-        <div class="step"><div class="step-num">১</div><div><b>যোগাযোগ করুন 📞</b><p>কল, WhatsApp বা সোশ্যাল মিডিয়ায় যোগাযোগ করে পছন্দের প্ল্যান বেছে নিন।</p></div></div>
-        <div class="step"><div class="step-num">২</div><div><b>তথ্য প্রদান করুন 📝</b><p>ব্যবসার নাম, মেনু, ছবি, মূল্য তালিকা ও যোগাযোগের ঠিকানা পাঠিয়ে দিন।</p></div></div>
-        <div class="step"><div class="step-num">৩</div><div><b>আমরা QR তৈরি করব 🛠️</b><p>আপনার তথ্যের ভিত্তিতে প্রফেশনাল QR কোড তৈরি করে দেওয়া হবে।</p></div></div>
-        <div class="step"><div class="step-num">৪</div><div><b>ব্যবহার শুরু করুন 🎉</b><p>প্রিন্ট করে দোকানে বসান বা সোশ্যাল মিডিয়ায় শেয়ার করুন।</p></div></div>
-      </div>
-    </div>
-  </div>
-  <div class="section reveal" id="sec-about">
-    <div class="section-head"><span class="emoji-badge">📖</span><span class="section-title">Open QR কি এবং কেন?</span></div>
-    <div class="card">
-      <div class="about-p">বাংলাদেশের ব্যবসাগুলোকে আরও সহজ, প্রফেশনাল ও আধুনিক করার লক্ষ্য নিয়ে এসেছে Open QR।</div>
-      <div class="about-p">কোনো অ্যাপ বা ভারী সফটওয়্যার ছাড়াই একটি মাত্র QR কোডের সাহায্যে গ্রাহকদের কাছে আপনার মেনু, পণ্য, মূল্য তালিকা, পেমেন্ট এবং যোগাযোগের তথ্য পৌঁছে দিন — আপনার ব্যবসাকে নিয়ে যান ডিজিটাল যুগে!</div>
-    </div>
-  </div>
-  <div class="section reveal" id="sec-demo">
-    <div class="demo-card">
-      <div class="section-title">👀 নিজের চোখে দেখুন</div>
-      <p>একটা আসল রেস্টুরেন্টের জন্য বানানো Open QR পেজ দেখুন — ঠিক এভাবেই আপনার ব্যবসারও একটা পেজ হতে পারে।</p>
-      <a class="demo-btn" href="/noor-restaurant/" target="_blank" rel="noopener">ডেমো পেজ দেখুন →</a>
-    </div>
-  </div>
-  <div class="section reveal" id="sec-contact">
-    <div class="card" style="text-align:center;">
-      <div class="section-title" style="justify-content:center; display:flex; margin-bottom:8px;">🚀 আজই শুরু করুন</div>
-      <p style="font-size:12.5px; color:#5a6b60; margin-bottom:6px;">মাত্র ৪টি ধাপে আপনার ব্যবসাকেও নিয়ে আসুন ডিজিটাল যুগে</p>
-      <div class="cta-row">
-        <a class="cta primary" href="tel:+8801713816247">☎️ কল করুন</a>
-        <a class="cta secondary" href="https://wa.me/8801713816247?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20Open%20QR%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87%E0%A5%A4" target="_blank" rel="noopener">💬 WhatsApp</a>
-      </div>
-    </div>
-  </div>
-  <footer>
-    <div class="footer-contact">
-      📞 <a href="tel:+8801713816247">01713-816247</a><br>
-      ✉️ <a href="mailto:openqr2026@gmail.com">openqr2026@gmail.com</a>
-    </div>
-    <div class="powered"><b>Open QR</b> — Smart QR Solution for Every Business</div>
-  </footer>
-</div>
+<div id="root"></div>
+<div class="toast" id="toast"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-  document.querySelectorAll('.tab2').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab2').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.benefit-panel').forEach(p => p.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.panel).classList.add('active');
-    });
+const firebaseConfig={apiKey:"AIzaSyCucH3NfX2nq092ZgRiCwJXtdRz_cjft8I",authDomain:"open-qr-bd.firebaseapp.com",projectId:"open-qr-bd",storageBucket:"open-qr-bd.firebasestorage.app",messagingSenderId:"254895573910",appId:"1:254895573910:web:da5dd36a46d0fabbc6abb7"};
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+const root=document.getElementById('root');
+
+function getSlug(){const parts=window.location.pathname.split('/').filter(Boolean);return parts[0]||'';}
+function waLink(n,m){return"https://wa.me/"+n+"?text="+encodeURIComponent(m);}
+function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(showToast._timer);showToast._timer=setTimeout(()=>t.classList.remove('show'),1800);}
+function copyText(t){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(()=>showToast("নম্বর কপি হয়েছে: "+t));}else{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showToast("নম্বর কপি হয়েছে: "+t);}catch(e){showToast(t);}document.body.removeChild(ta);}}
+function isOpenNow(sch){if(!sch)return true;const now=new Date();const day=now.getDay();const mins=now.getHours()*60+now.getMinutes();const openMins=(sch.openHour||0)*60+(sch.openMinute||0);const closeMins=(sch.closeHour||23)*60+(sch.closeMinute||59);if(sch.closedWeekday===day)return false;return mins>=openMins&&mins<closeMins;}
+
+function renderState(emoji,title,msg){
+  root.innerHTML=`<div class="state-screen"><div class="emoji">${emoji}</div><h2 style="font-family:'Baloo Da 2',sans-serif;color:var(--green-deep);font-size:18px;">${title}</h2><p>${msg}</p><a href="https://openqr-bd.netlify.app/">Open QR হোমপেজে যান</a></div>`;
+}
+
+function renderPage(slug,d){
+  const pageUrl=window.location.origin+'/'+slug+'/';
+  const phoneTel=d.phoneTel||('+880'+(d.phone||'').replace(/^0/,''));
+  const whatsapp=d.whatsapp||('880'+(d.phone||'').replace(/^0/,''));
+  const orderMsg=d.whatsappOrderMsg||'আসসালামু আলাইকুম, আমি জানতে চাই।';
+  const sections=d.sections||[];
+  const open=isOpenNow(d.schedule);
+
+  root.innerHTML=`
+    <div class="app">
+      ${(d.ticker&&d.ticker.length)?`<div class="ticker"><div class="ticker-track" id="ticker-track"></div></div>`:''}
+      <div class="hero">
+        <div class="hero-pattern"></div>
+        <div class="badge-row">${d.eyebrow?`<span class="eyebrow">${d.eyebrow}</span>`:''}<span class="status-pill ${open?'open':'closed'}"><span class="status-dot"></span>${open?'এখন খোলা':'এখন বন্ধ'}</span></div>
+        <h1>${d.name||slug}</h1>
+        ${d.tagline?`<div class="tagline">${d.tagline}</div>`:''}
+      </div>
+      <div class="info-card" id="info-card"></div>
+      ${sections.length>3?`<div class="search-wrap"><div class="search-box"><span>🔍</span><input id="search-input" type="text" placeholder="খুঁজুন..."><button class="search-clear" id="search-clear">✕</button></div></div>`:''}
+      <div class="nav-wrap"><nav class="tabs" id="nav-tabs"></nav></div>
+      <div class="spacer"></div>
+      <div id="sections-root"></div>
+      <div class="no-results" id="no-results">😕 এই নামে কিছু পাওয়া যায়নি</div>
+      ${(d.aboutText||(d.whyUs&&d.whyUs.length))?`<div class="section-card reveal" id="sec-about"><div class="section-title">🏪 আমাদের সম্পর্কে</div>${d.aboutText?`<div class="about-p">${d.aboutText}</div>`:''}${(d.whyUs&&d.whyUs.length)?`<div class="why-grid">${d.whyUs.map(w=>`<div class="why-row"><span class="tick">✓</span>${w}</div>`).join('')}</div>`:''}</div>`:''}
+      <footer>
+        <div class="cta-row">${phoneTel?`<a class="cta primary" href="tel:${phoneTel}">☎️ কল করুন</a>`:''}${whatsapp?`<a class="cta secondary" href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener">💬 WhatsApp</a>`:''}</div>
+        <div class="qr-box"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=0A6B3D&bgcolor=F5FAF7&data=${encodeURIComponent(pageUrl)}" alt="QR code"><div class="qr-text"><b>টেবিলে এই QR-টাই থাকবে</b>তথ্য আপডেট হলেও এই একই QR কোড কাজ করবে</div></div>
+        <div class="powered"><b>Powered by Open QR</b><br>Smart Digital Business Profile<br>🌐 Open QR</div>
+      </footer>
+    </div>
+    <div class="fab-col">
+      ${whatsapp?`<a class="fab wa" href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}
+      ${phoneTel?`<a class="fab call" href="tel:${phoneTel}" aria-label="কল করুন">📞</a>`:''}
+    </div>
+    <div class="order-bar" id="order-bar">
+      <div class="order-bar-info"><b id="order-count">0 আইটেম</b><span id="order-total">মোট: ৳0</span></div>
+      <button id="order-send">🛒 অর্ডার পাঠান</button>
+    </div>
+  `;
+
+  if(d.ticker&&d.ticker.length){const tt=document.getElementById('ticker-track');const h=d.ticker.map(t=>`<span>${t}</span>`).join('');tt.innerHTML=h+h;}
+
+  const infoCard=document.getElementById('info-card');
+  let infoHtml='';
+  if(phoneTel)infoHtml+=`<a href="tel:${phoneTel}"><span class="ic">📞</span>কল করুন</a>`;
+  if(whatsapp)infoHtml+=`<a href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener"><span class="ic">💬</span>WhatsApp</a>`;
+  if(d.mapsUrl)infoHtml+=`<a href="${d.mapsUrl}" target="_blank" rel="noopener"><span class="ic">📍</span>লোকেশন</a>`;
+  if(d.reviewUrl)infoHtml+=`<a href="${d.reviewUrl}" target="_blank" rel="noopener"><span class="ic">⭐</span>রিভিউ দিন</a>`;
+  infoCard.innerHTML=infoHtml;
+
+  const nav=document.getElementById('nav-tabs');
+  const sroot=document.getElementById('sections-root');
+  sections.forEach(sec=>{
+    const a=document.createElement('a');a.className='tab';a.href='#'+sec.id;a.dataset.target=sec.id;a.textContent=(sec.icon||'📋')+' '+sec.title;nav.appendChild(a);
+    const wrap=document.createElement('section');wrap.className='section-card reveal';wrap.id=sec.id;
+    wrap.innerHTML=`<div class="section-title">${sec.icon||'📋'} ${sec.title}</div>`+(sec.items||[]).map(([name,price])=>`<div class="item" data-name="${(name||'').toLowerCase()}" data-order-name="${name}" data-order-price="${(price||'').toString().replace(/[^0-9]/g,'')}"><span class="item-check" role="checkbox" aria-checked="false"></span><span class="item-name">${name}</span>${price?`<span class="item-price">৳ ${price}</span>`:''}</div>`).join('');
+    sroot.appendChild(wrap);
   });
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){ entry.target.classList.add('in'); revealObserver.unobserve(entry.target); }
+
+  if(d.payments&&d.payments.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">💳 বিল পরিশোধ করুন</div><div class="pay-grid">${d.payments.filter(p=>p.number).map(p=>`<div class="pay-card" data-number="${p.number}"><div class="dot" style="background:${p.color||'#0F9D58'};"></div><b>${p.name}</b><span>${p.number}</span></div>`).join('')}</div><div class="pay-hint">নম্বরে ট্যাপ করলে কপি হয়ে যাবে</div>`;
+    sroot.appendChild(wrap);
+  }
+
+  sroot.addEventListener('click',(e)=>{
+    const card=e.target.closest('.pay-card');if(card){copyText(card.dataset.number);return;}
+    const item=e.target.closest('.item');if(!item||!item.dataset.orderName)return;
+    const key=item.dataset.orderName;const price=parseInt(item.dataset.orderPrice,10)||0;const check=item.querySelector('.item-check');
+    if(cart.has(key)){cart.delete(key);check.classList.remove('checked');check.textContent='';check.setAttribute('aria-checked','false');item.classList.remove('checked');}
+    else{cart.set(key,{name:key,price});check.classList.add('checked');check.textContent='✓';check.setAttribute('aria-checked','true');item.classList.add('checked');}
+    updateOrderBar();
+  });
+
+  const tabs=Array.from(document.querySelectorAll('.tab'));
+  function setActive(id){tabs.forEach(t=>t.classList.toggle('active',t.dataset.target===id));}
+  tabs.forEach(tab=>{tab.addEventListener('click',(e)=>{e.preventDefault();const id=tab.dataset.target;const target=document.getElementById(id);if(target){target.scrollIntoView({behavior:'smooth',block:'start'});setActive(id);}});});
+  if(tabs.length)setActive(tabs[0].dataset.target);
+
+  const searchInput=document.getElementById('search-input');
+  if(searchInput){
+    const searchClear=document.getElementById('search-clear');const noResults=document.getElementById('no-results');
+    const listSections=Array.from(document.querySelectorAll('.section-card')).filter(s=>s.querySelector('.item'));
+    searchInput.addEventListener('input',()=>{
+      const q=searchInput.value.trim().toLowerCase();searchClear.classList.toggle('show',q.length>0);
+      if(!q){document.querySelectorAll('.item.hidden').forEach(i=>i.classList.remove('hidden'));listSections.forEach(s=>s.classList.remove('hidden'));noResults.classList.remove('show');return;}
+      let any=false;listSections.forEach(sec=>{let match=false;sec.querySelectorAll('.item').forEach(item=>{const m=item.dataset.name.includes(q);item.classList.toggle('hidden',!m);if(m){match=true;any=true;}});sec.classList.toggle('hidden',!match);});
+      noResults.classList.toggle('show',!any);
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    searchClear.addEventListener('click',()=>{searchInput.value='';searchInput.dispatchEvent(new Event('input'));searchInput.focus();});
+  }
+
+  const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');revealObserver.unobserve(entry.target);}});},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+  document.getElementById('order-send').addEventListener('click',()=>{
+    if(cart.size===0)return;
+    const lines=['আসসালামু আলাইকুম, আমি নিচের আইটেমগুলো অর্ডার করতে চাই:',''];let i=1,total=0;
+    cart.forEach(it=>{lines.push(i+'. '+it.name+' — ৳'+it.price);total+=it.price;i++;});
+    lines.push('');lines.push('মোট: ৳'+total);lines.push('');lines.push('(টেবিল নম্বর / ঠিকানা এখানে লিখুন)');
+    window.open(waLink(whatsapp,lines.join('\n')),'_blank');
+  });
+}
+
+const cart=new Map();
+function updateOrderBar(){const bar=document.getElementById('order-bar');const c=document.getElementById('order-count');const t=document.getElementById('order-total');if(cart.size===0){bar.classList.remove('show');return;}let total=0;cart.forEach(it=>total+=it.price);c.textContent=cart.size+' আইটেম নির্বাচিত';t.textContent='আনুমানিক মোট: ৳'+total;bar.classList.add('show');}
+
+const slug=getSlug();
+if(!slug){renderState('🏠','সঠিক লিংক দরকার','এই পেজে সরাসরি কিছু নেই — QR কোড স্ক্যান করে বা সঠিক লিংক দিয়ে আসুন।');}
+else{
+  db.collection('clients').doc(slug).get().then(doc=>{
+    if(!doc.exists){renderState('😕','পেজ পাওয়া যায়নি','এই লিংকে কোনো ব্যবসার তথ্য নেই। লিংকটা আবার চেক করুন।');return;}
+    renderPage(slug,doc.data());
+  }).catch(err=>{
+    console.error(err);
+    renderState('⚠️','লোড করতে সমস্যা হয়েছে','একটু পরে আবার চেষ্টা করুন।');
+  });
+}
 </script>
 </body>
-</html>
+</html>      
