@@ -48,7 +48,7 @@
   .field{ margin-bottom:11px; }
   .field label{ display:block; font-size:11.5px; font-weight:600; color:#5a6b60; margin-bottom:5px; }
   .field .hint{ font-size:10px; color:#a2b0a6; margin-top:3px; }
-  input[type=text], input[type=tel], input[type=url], input[type=email], input[type=password], textarea, select{
+  input[type=text], input[type=tel], input[type=url], input[type=email], input[type=password], input[type=time], textarea, select{
     width:100%; border:1px solid var(--line); border-radius:10px; padding:10px 12px;
     font-family:'Hind Siliguri',sans-serif; font-size:13.5px; background:var(--cream); color:var(--ink);
   }
@@ -105,8 +105,15 @@
         <div class="field"><label>ব্যবসার নাম</label><input type="text" id="fName"></div>
         <div class="field"><label>ট্যাগলাইন</label><input type="text" id="fTagline"></div>
         <div class="field"><label>হেডারের উপরের ছোট লাইন</label><input type="text" id="fEyebrow"></div>
+        <div class="field">
+          <label>লোগোর ছবির লিংক (ঐচ্ছিক)</label>
+          <input type="url" id="fLogoUrl" placeholder="https://...">
+          <div class="hint">imgbb.com বা Google Drive-এ ছবি আপলোড করে পাবলিক লিংক বসান</div>
+        </div>
 
         <div class="field"><label>ফোন/WhatsApp নম্বর</label><input type="tel" id="fPhone" placeholder="01XXXXXXXXX"></div>
+        <div class="field"><label>WhatsApp অর্ডার মেসেজ</label><input type="text" id="fOrderMsg" placeholder="আসসালামু আলাইকুম, আমি অর্ডার করতে চাই।"></div>
+        <div class="field"><label>WhatsApp টেবিল বুকিং মেসেজ</label><input type="text" id="fBookingMsg" placeholder="আসসালামু আলাইকুম, আমি টেবিল বুক করতে চাই।"></div>
         <div class="row2">
           <div class="field"><label>বিকাশ</label><input type="tel" id="fBkash"></div>
           <div class="field"><label>নগদ</label><input type="tel" id="fNagad"></div>
@@ -114,8 +121,13 @@
         <div class="field"><label>রকেট</label><input type="tel" id="fRocket"></div>
         <div class="field"><label>Google Maps লিংক</label><input type="url" id="fMaps"></div>
         <div class="field"><label>Google রিভিউ লিংক</label><input type="url" id="fReview"></div>
+
         <div class="row2">
-          <div class="field"><label>খোলার সময়</label><input type="text" id="fHours" placeholder="৯টা–১০টা"></div>
+          <div class="field"><label>খোলার সময় (সঠিক হিসাবের জন্য)</label><input type="time" id="fOpenTime" value="09:00"></div>
+          <div class="field"><label>বন্ধের সময় (সঠিক হিসাবের জন্য)</label><input type="time" id="fCloseTime" value="21:00"></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label>খোলার সময় (দেখানোর জন্য টেক্সট)</label><input type="text" id="fHours" placeholder="৯টা–১০টা"></div>
           <div class="field"><label>সাপ্তাহিক ছুটি</label>
             <select id="fClosedDay">
               <option value="5">শুক্রবার</option>
@@ -132,6 +144,34 @@
         <h2>📋 মেনু / সেবা</h2>
         <div id="categoriesWrap"></div>
         <button class="add-cat-btn" id="addCategoryBtn" type="button">+ ক্যাটাগরি যোগ করুন</button>
+      </div>
+
+      <div class="card">
+        <h2>🌟 সর্বাধিক অর্ডারকৃত (ঐচ্ছিক)</h2>
+        <div class="field"><label>এক লাইনে একটা — লেবেল, মূল্য</label>
+          <textarea id="fBestSellers" placeholder="🥇 কাচ্চি বিরিয়ানি, ৳ ২৮০
+🥈 চিকেন বার্গার, ৳ ২২০"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🎉 সময়ভিত্তিক বিশেষ অফার (ঐচ্ছিক)</h2>
+        <div class="field"><label>এক লাইনে একটা — লেখা (আর সময় দিতে চাইলে | দিয়ে ২৪-ঘণ্টা ফরম্যাটে "শুরু-শেষ")</label>
+          <textarea id="fOffers" placeholder="⭐ কাচ্চি বিরিয়ানিতে ১০% ছাড়
+⭐ বিকেল ৪টা–৬টা কফিতে ছাড় | 16-18"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>💬 কাস্টমার রিভিউ (ঐচ্ছিক)</h2>
+        <div class="field"><label>এক লাইনে একটা — নাম, তারকা(১-৫), মন্তব্য</label>
+          <textarea id="fReviews" placeholder="রাকিব হাসান, 5, কাচ্চি বিরিয়ানি অসাধারণ!"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🎟️ টেবিল বুকিং (ঐচ্ছিক)</h2>
+        <div class="field"><label>বুকিং সেকশনের বিবরণ</label><textarea id="fBookingText" placeholder="আগে থেকে টেবিল বুক করে রাখতে পারেন..."></textarea></div>
       </div>
 
       <div class="card">
@@ -185,11 +225,15 @@ function addCategory(icon='🍽️', title='', itemsText=''){
 }
 document.getElementById('addCategoryBtn').addEventListener('click', ()=>addCategory());
 
+function pad2(n){ return String(n).padStart(2,'0'); }
+
 function resetForm(){
   editingSlug = null;
   document.getElementById('formTitle').textContent = 'নতুন ক্লায়েন্ট যোগ করুন';
-  ['fSlug','fName','fTagline','fEyebrow','fPhone','fBkash','fNagad','fRocket','fMaps','fReview','fHours','fTicker','fAbout','fWhyUs'].forEach(id=>document.getElementById(id).value='');
+  ['fSlug','fName','fTagline','fEyebrow','fLogoUrl','fPhone','fOrderMsg','fBookingMsg','fBkash','fNagad','fRocket','fMaps','fReview','fHours','fTicker','fBestSellers','fOffers','fReviews','fBookingText','fAbout','fWhyUs'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('fSlug').disabled = false;
+  document.getElementById('fOpenTime').value = '09:00';
+  document.getElementById('fCloseTime').value = '21:00';
   document.getElementById('categoriesWrap').innerHTML = '';
   catCount = 0;
   addCategory();
@@ -234,7 +278,7 @@ function loadClientList(){
       `;
       wrap.appendChild(row);
     });
-  }).catch(err=>{ wrap.innerHTML = '<div class="empty-note">লোড করতে সমস্যা হয়েছে</div>'; console.error(err); });
+  }).catch(err=>{ wrap.innerHTML = '<div class="empty-note">লোড করতে সমস্যা হয়েছে: '+err.message+'</div>'; console.error(err); });
 }
 
 window.editClient = function(slug){
@@ -250,7 +294,10 @@ window.editClient = function(slug){
     document.getElementById('fName').value = d.name||'';
     document.getElementById('fTagline').value = d.tagline||'';
     document.getElementById('fEyebrow').value = d.eyebrow||'';
+    document.getElementById('fLogoUrl').value = d.logoUrl||'';
     document.getElementById('fPhone').value = d.phone||'';
+    document.getElementById('fOrderMsg').value = d.whatsappOrderMsg||'';
+    document.getElementById('fBookingMsg').value = d.whatsappBookingMsg||'';
     document.getElementById('fBkash').value = (d.payments&&d.payments[0]&&d.payments[0].number)||'';
     document.getElementById('fNagad').value = (d.payments&&d.payments[1]&&d.payments[1].number)||'';
     document.getElementById('fRocket').value = (d.payments&&d.payments[2]&&d.payments[2].number)||'';
@@ -258,7 +305,13 @@ window.editClient = function(slug){
     document.getElementById('fReview').value = d.reviewUrl||'';
     document.getElementById('fHours').value = (d.schedule&&d.schedule.hoursShort)||'';
     document.getElementById('fClosedDay').value = (d.schedule&&d.schedule.closedWeekday!==undefined)?d.schedule.closedWeekday:5;
+    document.getElementById('fOpenTime').value = (d.schedule&&d.schedule.openHour!==undefined)?(pad2(d.schedule.openHour)+':'+pad2(d.schedule.openMinute||0)):'09:00';
+    document.getElementById('fCloseTime').value = (d.schedule&&d.schedule.closeHour!==undefined)?(pad2(d.schedule.closeHour)+':'+pad2(d.schedule.closeMinute||0)):'21:00';
     document.getElementById('fTicker').value = (d.ticker||[]).join('\n');
+    document.getElementById('fBestSellers').value = (d.bestSellers||[]).map(r=>r[0]+', '+r[1]).join('\n');
+    document.getElementById('fOffers').value = (d.offers||[]).map(o=> o.liveWindow ? (o.text+' | '+o.liveWindow[0]+'-'+o.liveWindow[1]) : o.text ).join('\n');
+    document.getElementById('fReviews').value = (d.reviews||[]).map(r=>r.name+', '+r.stars+', '+r.text).join('\n');
+    document.getElementById('fBookingText').value = d.bookingText||'';
     document.getElementById('fAbout').value = d.aboutText||'';
     document.getElementById('fWhyUs').value = (d.whyUs||[]).join('\n');
 
@@ -271,66 +324,113 @@ window.editClient = function(slug){
     if(!(d.sections||[]).length) addCategory();
 
     showForm();
-  });
+  }).catch(err=>{ alert('ক্লায়েন্ট লোড করতে সমস্যা হয়েছে: '+err.message); console.error(err); });
 };
 
 window.deleteClient = function(slug){
   if(!confirm('আপনি কি নিশ্চিত? "'+slug+'" পেজটা মুছে ফেলা হবে এবং এটা আর ফেরত আনা যাবে না।')) return;
-  db.collection('clients').doc(slug).delete().then(loadClientList);
+  db.collection('clients').doc(slug).delete().then(loadClientList).catch(err=>alert('মুছতে সমস্যা হয়েছে: '+err.message));
 };
 
 document.getElementById('saveBtn').addEventListener('click', () => {
-  const slug = document.getElementById('fSlug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-');
   const statusEl = document.getElementById('saveStatus');
-  if(!slug){ statusEl.className='save-status err'; statusEl.textContent='পেজের URL নাম দিতে হবে'; return; }
+  statusEl.className = 'save-status';
+  statusEl.textContent = '';
+  try{
+    const slug = document.getElementById('fSlug').value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-');
+    if(!slug){ statusEl.className='save-status err'; statusEl.textContent='পেজের URL নাম দিতে হবে'; return; }
 
-  const phone = document.getElementById('fPhone').value.trim();
-  const phoneTel = '+880' + phone.replace(/^0/,'');
-  const whatsapp = '880' + phone.replace(/^0/,'');
+    const phone = document.getElementById('fPhone').value.trim();
+    const phoneTel = '+880' + phone.replace(/^0/,'');
+    const whatsapp = '880' + phone.replace(/^0/,'');
 
-  const sections = Array.from(document.querySelectorAll('.category')).map((el,i) => {
-    const icon = el.querySelector('.cat-icon').value.trim() || '🍽️';
-    const title = el.querySelector('.cat-title').value.trim() || ('ক্যাটাগরি '+(i+1));
-    const items = el.querySelector('.cat-items').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+    const sections = Array.from(document.querySelectorAll('.category')).map((el,i) => {
+      const icon = el.querySelector('.cat-icon').value.trim() || '🍽️';
+      const title = el.querySelector('.cat-title').value.trim() || ('ক্যাটাগরি '+(i+1));
+      const items = el.querySelector('.cat-items').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+        const parts = line.split(',');
+        return [(parts[0]||'').trim(), (parts[1]||'').trim()];
+      });
+      return { id:'sec-cat'+i, icon, title, type:'list', items };
+    }).filter(s => s.items.length);
+
+    const bestSellers = document.getElementById('fBestSellers').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
       const parts = line.split(',');
       return [(parts[0]||'').trim(), (parts[1]||'').trim()];
     });
-    return { id:'sec-cat'+i, icon, title, type:'list', items };
-  }).filter(s => s.items.length);
 
-  const data = {
-    name: document.getElementById('fName').value.trim() || slug,
-    tagline: document.getElementById('fTagline').value.trim(),
-    eyebrow: document.getElementById('fEyebrow').value.trim(),
-    phone, phoneTel, whatsapp,
-    whatsappOrderMsg: 'আসসালামু আলাইকুম, আমি জানতে চাই।',
-    mapsUrl: document.getElementById('fMaps').value.trim(),
-    reviewUrl: document.getElementById('fReview').value.trim(),
-    schedule: {
-      openHour:9, openMinute:0, closeHour:21, closeMinute:0,
-      closedWeekday: Number(document.getElementById('fClosedDay').value),
-      hoursShort: document.getElementById('fHours').value.trim()
-    },
-    ticker: document.getElementById('fTicker').value.split('\n').map(s=>s.trim()).filter(Boolean),
-    payments: [
-      { name:'বিকাশ', number: document.getElementById('fBkash').value.trim() || phone, color:'#E2136E' },
-      { name:'নগদ', number: document.getElementById('fNagad').value.trim() || phone, color:'#F6921E' },
-      { name:'রকেট', number: document.getElementById('fRocket').value.trim() || phone, color:'#8B2E8F' }
-    ],
-    sections,
-    aboutText: document.getElementById('fAbout').value.trim(),
-    whyUs: document.getElementById('fWhyUs').value.split('\n').map(s=>s.trim()).filter(Boolean),
-    updatedAt: new Date().toISOString()
-  };
+    const offers = document.getElementById('fOffers').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+      const pipeIdx = line.indexOf('|');
+      if(pipeIdx === -1) return { text: line };
+      const text = line.slice(0,pipeIdx).trim();
+      const rangeStr = line.slice(pipeIdx+1).trim();
+      const m = rangeStr.match(/(\d+)\s*-\s*(\d+)/);
+      if(m) return { text, liveWindow: [parseInt(m[1],10), parseInt(m[2],10)] };
+      return { text };
+    });
 
-  db.collection('clients').doc(slug).set(data).then(() => {
-    statusEl.className = 'save-status ok';
-    statusEl.textContent = '✅ সফলভাবে সেভ ও পাবলিশ হয়েছে! লিংক: openqr-bd.netlify.app/'+slug+'/';
-    setTimeout(showList, 1600);
-  }).catch(err => {
+    const reviews = document.getElementById('fReviews').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
+      const idx1 = line.indexOf(',');
+      const name = idx1===-1 ? line : line.slice(0,idx1).trim();
+      const rest = idx1===-1 ? '' : line.slice(idx1+1);
+      const idx2 = rest.indexOf(',');
+      const starsStr = idx2===-1 ? rest.trim() : rest.slice(0,idx2).trim();
+      const text = idx2===-1 ? '' : rest.slice(idx2+1).trim();
+      let stars = parseInt(starsStr,10); if(!stars || stars<1) stars=5; if(stars>5) stars=5;
+      return { name, stars, text };
+    });
+
+    const openParts = (document.getElementById('fOpenTime').value || '09:00').split(':').map(Number);
+    const closeParts = (document.getElementById('fCloseTime').value || '21:00').split(':').map(Number);
+
+    const data = {
+      name: document.getElementById('fName').value.trim() || slug,
+      tagline: document.getElementById('fTagline').value.trim(),
+      eyebrow: document.getElementById('fEyebrow').value.trim(),
+      logoUrl: document.getElementById('fLogoUrl').value.trim(),
+      phone, phoneTel, whatsapp,
+      whatsappOrderMsg: document.getElementById('fOrderMsg').value.trim() || 'আসসালামু আলাইকুম, আমি অর্ডার করতে চাই।',
+      whatsappBookingMsg: document.getElementById('fBookingMsg').value.trim() || 'আসসালামু আলাইকুম, আমি একটি টেবিল বুক করতে চাই।',
+      mapsUrl: document.getElementById('fMaps').value.trim(),
+      reviewUrl: document.getElementById('fReview').value.trim(),
+      schedule: {
+        openHour: openParts[0]||9, openMinute: openParts[1]||0,
+        closeHour: closeParts[0]||21, closeMinute: closeParts[1]||0,
+        closedWeekday: Number(document.getElementById('fClosedDay').value),
+        hoursShort: document.getElementById('fHours').value.trim()
+      },
+      ticker: document.getElementById('fTicker').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      payments: [
+        { name:'বিকাশ', number: document.getElementById('fBkash').value.trim() || phone, color:'#E2136E' },
+        { name:'নগদ', number: document.getElementById('fNagad').value.trim() || phone, color:'#F6921E' },
+        { name:'রকেট', number: document.getElementById('fRocket').value.trim() || phone, color:'#8B2E8F' }
+      ],
+      sections,
+      bestSellers,
+      offers,
+      reviews,
+      bookingText: document.getElementById('fBookingText').value.trim(),
+      aboutText: document.getElementById('fAbout').value.trim(),
+      whyUs: document.getElementById('fWhyUs').value.split('\n').map(s=>s.trim()).filter(Boolean),
+      updatedAt: new Date().toISOString()
+    };
+
+    db.collection('clients').doc(slug).set(data).then(() => {
+      statusEl.className = 'save-status ok';
+      statusEl.textContent = '✅ সফলভাবে সেভ ও পাবলিশ হয়েছে! লিংক: openqr-bd.netlify.app/'+slug+'/';
+      setTimeout(showList, 1600);
+    }).catch(err => {
+      statusEl.className = 'save-status err';
+      statusEl.textContent = 'সেভ করতে সমস্যা হয়েছে: ' + err.message;
+      alert('সেভ করতে সমস্যা হয়েছে: ' + err.message);
+      console.error(err);
+    });
+  }catch(errSync){
     statusEl.className = 'save-status err';
-    statusEl.textContent = 'সেভ করতে সমস্যা হয়েছে: ' + err.message;
-  });
+    statusEl.textContent = 'ফর্মে সমস্যা হয়েছে: ' + errSync.message;
+    alert('ফর্মে সমস্যা হয়েছে: ' + errSync.message);
+    console.error(errSync);
+  }
 });
 
 document.getElementById('loginBtn').addEventListener('click', () => {
