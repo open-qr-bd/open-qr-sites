@@ -308,7 +308,7 @@ window.editClient = function(slug){
     document.getElementById('fOpenTime').value = (d.schedule&&d.schedule.openHour!==undefined)?(pad2(d.schedule.openHour)+':'+pad2(d.schedule.openMinute||0)):'09:00';
     document.getElementById('fCloseTime').value = (d.schedule&&d.schedule.closeHour!==undefined)?(pad2(d.schedule.closeHour)+':'+pad2(d.schedule.closeMinute||0)):'21:00';
     document.getElementById('fTicker').value = (d.ticker||[]).join('\n');
-    document.getElementById('fBestSellers').value = (d.bestSellers||[]).map(r=>r[0]+', '+r[1]).join('\n');
+    document.getElementById('fBestSellers').value = (d.bestSellers||[]).map(r=>r.label+', '+r.value).join('\n');
     document.getElementById('fOffers').value = (d.offers||[]).map(o=> o.liveWindow ? (o.text+' | '+o.liveWindow[0]+'-'+o.liveWindow[1]) : o.text ).join('\n');
     document.getElementById('fReviews').value = (d.reviews||[]).map(r=>r.name+', '+r.stars+', '+r.text).join('\n');
     document.getElementById('fBookingText').value = d.bookingText||'';
@@ -318,7 +318,7 @@ window.editClient = function(slug){
     document.getElementById('categoriesWrap').innerHTML = '';
     catCount = 0;
     (d.sections||[]).forEach(sec => {
-      const itemsText = (sec.items||[]).map(it=>it[0]+', '+it[1]).join('\n');
+      const itemsText = (sec.items||[]).map(it=>it.name+', '+it.price).join('\n');
       addCategory(sec.icon||'🍽️', sec.title||'', itemsText);
     });
     if(!(d.sections||[]).length) addCategory();
@@ -349,14 +349,14 @@ document.getElementById('saveBtn').addEventListener('click', () => {
       const title = el.querySelector('.cat-title').value.trim() || ('ক্যাটাগরি '+(i+1));
       const items = el.querySelector('.cat-items').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
         const parts = line.split(',');
-        return [(parts[0]||'').trim(), (parts[1]||'').trim()];
+        return { name:(parts[0]||'').trim(), price:(parts[1]||'').trim() };
       });
       return { id:'sec-cat'+i, icon, title, type:'list', items };
     }).filter(s => s.items.length);
 
     const bestSellers = document.getElementById('fBestSellers').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
       const parts = line.split(',');
-      return [(parts[0]||'').trim(), (parts[1]||'').trim()];
+      return { label:(parts[0]||'').trim(), value:(parts[1]||'').trim() };
     });
 
     const offers = document.getElementById('fOffers').value.split('\n').map(l=>l.trim()).filter(Boolean).map(line=>{
@@ -456,4 +456,4 @@ auth.onAuthStateChanged(user => {
 });
 </script>
 </body>
-</html>
+</html>        
