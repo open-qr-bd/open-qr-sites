@@ -193,13 +193,13 @@ function renderPage(slug,d){
   sections.forEach(sec=>{
     const a=document.createElement('a');a.className='tab';a.href='#'+sec.id;a.dataset.target=sec.id;a.textContent=(sec.icon||'📋')+' '+sec.title;nav.appendChild(a);
     const wrap=document.createElement('section');wrap.className='section-card reveal';wrap.id=sec.id;
-    wrap.innerHTML=`<div class="section-title">${sec.icon||'📋'} ${sec.title}</div>`+(sec.items||[]).map(([name,price])=>`<div class="item" data-name="${(name||'').toLowerCase()}" data-order-name="${name}" data-order-price="${(price||'').toString().replace(/[^0-9]/g,'')}"><span class="item-check" role="checkbox" aria-checked="false"></span><span class="item-name">${name}</span>${price?`<span class="item-price">৳ ${price}</span>`:''}</div>`).join('');
+    wrap.innerHTML=`<div class="section-title">${sec.icon||'📋'} ${sec.title}</div>`+(sec.items||[]).map(it=>{const name=it.name;const price=it.price;return `<div class="item" data-name="${(name||'').toLowerCase()}" data-order-name="${name}" data-order-price="${(price||'').toString().replace(/[^0-9]/g,'')}"><span class="item-check" role="checkbox" aria-checked="false"></span><span class="item-name">${name}</span>${price?`<span class="item-price">৳ ${price}</span>`:''}</div>`;}).join('');
     sroot.appendChild(wrap);
   });
 
   if(d.bestSellers&&d.bestSellers.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal card-gold';
-    wrap.innerHTML=`<div class="section-title">🌟 সর্বাধিক অর্ডারকৃত</div>`+d.bestSellers.map(([l,v])=>`<div class="row-flex"><span>${l}</span><span>${v}</span></div>`).join('');
+    wrap.innerHTML=`<div class="section-title">🌟 সর্বাধিক অর্ডারকৃত</div>`+d.bestSellers.map(r=>`<div class="row-flex"><span>${r.label}</span><span>${r.value}</span></div>`).join('');
     sroot.appendChild(wrap);
   }
 
