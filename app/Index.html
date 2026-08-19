@@ -155,7 +155,7 @@ function renderPage(slug,d){
         ${d.tagline?`<div class="tagline">${d.tagline}</div>`:''}
       </div>
       <div class="info-card" id="info-card"></div>
-      ${sections.length>3?`<div class="search-wrap"><div class="search-box"><span>🔍</span><input id="search-input" type="text" placeholder="খুঁজুন..."><button class="search-clear" id="search-clear">✕</button></div></div>`:''}
+      <div class="search-wrap"><div class="search-box"><span>🔍</span><input id="search-input" type="text" placeholder="খুঁজুন... (সেবা, ডাক্তার, পণ্য)"><button class="search-clear" id="search-clear">✕</button></div></div>
       <div class="nav-wrap"><nav class="tabs" id="nav-tabs"></nav></div>
       <div class="spacer"></div>
       <div id="sections-root"></div>
@@ -185,6 +185,9 @@ function renderPage(slug,d){
   if(whatsapp)infoHtml+=`<a href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener"><span class="ic">💬</span>WhatsApp</a>`;
   if(d.mapsUrl)infoHtml+=`<a href="${d.mapsUrl}" target="_blank" rel="noopener"><span class="ic">📍</span>লোকেশন</a>`;
   if(d.reviewUrl)infoHtml+=`<a href="${d.reviewUrl}" target="_blank" rel="noopener"><span class="ic">⭐</span>রিভিউ দিন</a>`;
+  if(d.helpline)infoHtml+=`<a href="tel:${d.helpline}"><span class="ic">🚨</span>হেল্পলাইন</a>`;
+  if(d.facebookUrl)infoHtml+=`<a href="${d.facebookUrl}" target="_blank" rel="noopener"><span class="ic">📘</span>Facebook</a>`;
+  if(d.youtubeUrl)infoHtml+=`<a href="${d.youtubeUrl}" target="_blank" rel="noopener"><span class="ic">▶️</span>YouTube</a>`;
   infoCard.innerHTML=infoHtml;
 
   const nav=document.getElementById('nav-tabs');
@@ -215,6 +218,30 @@ function renderPage(slug,d){
     sroot.appendChild(wrap);
   }
 
+  if(d.staff&&d.staff.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">👥 ${d.staffSectionLabel||'স্টাফ তালিকা'}</div>`+d.staff.map(s=>`<div class="item"><span class="item-name">${s.name}</span>${s.role?`<span class="item-price">${s.role}</span>`:''}</div>`).join('');
+    sroot.appendChild(wrap);
+  }
+
+  if(d.branches&&d.branches.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">🏢 শাখা তালিকা</div>`+d.branches.map(b=>`<div class="item" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="item-name">${b.name}</span><span style="font-size:11.5px;color:#7a8a7d;">${b.address||''}${b.phone?' · '+b.phone:''}</span></div>`).join('');
+    sroot.appendChild(wrap);
+  }
+
+  if(d.links&&d.links.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">🔗 গুরুত্বপূর্ণ লিংক</div>`+d.links.map(l=>`<a class="item" style="text-decoration:none;color:inherit;" href="${l.url}" target="_blank" rel="noopener"><span class="item-name">${l.label}</span><span class="item-price">↗</span></a>`).join('');
+    sroot.appendChild(wrap);
+  }
+
+  if(d.notices&&d.notices.length){
+    const wrap=document.createElement('section');wrap.className='section-card reveal';
+    wrap.innerHTML=`<div class="section-title">📢 নোটিশ / ঘোষণা</div>`+d.notices.map(n=>`<div class="row-plain">📌 ${n.text}${n.date?` <span style="color:#a2b0a6;font-size:11px;">(${n.date})</span>`:''}</div>`).join('');
+    sroot.appendChild(wrap);
+  }
+
   if(d.reviews&&d.reviews.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
     wrap.innerHTML=`<div class="section-title">💬 কাস্টমার রিভিউ</div>`+d.reviews.map(r=>`<div class="review-card"><div class="review-top"><span class="review-name">${r.name}</span><span class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span></div><div class="review-text">${r.text}</div></div>`).join('');
@@ -223,7 +250,8 @@ function renderPage(slug,d){
 
   if(d.bookingText){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title">🎟️ টেবিল বুকিং</div><div class="booking-p">${d.bookingText}</div><a class="booking-btn" href="${waLink(whatsapp,bookingMsg)}" target="_blank" rel="noopener">💬 WhatsApp-এ টেবিল বুক করুন</a>`;
+    const bLabel = d.bookingSectionLabel||'বুকিং';
+    wrap.innerHTML=`<div class="section-title">🎟️ ${bLabel}</div><div class="booking-p">${d.bookingText}</div><a class="booking-btn" href="${waLink(whatsapp,bookingMsg)}" target="_blank" rel="noopener">💬 WhatsApp-এ ${bLabel}</a>`;
     sroot.appendChild(wrap);
   }
 
@@ -248,7 +276,7 @@ function renderPage(slug,d){
     searchInput.addEventListener('input',()=>{
       const q=searchInput.value.trim().toLowerCase();searchClear.classList.toggle('show',q.length>0);
       if(!q){document.querySelectorAll('.item.hidden').forEach(i=>i.classList.remove('hidden'));listSections.forEach(s=>s.classList.remove('hidden'));noResults.classList.remove('show');return;}
-      let any=false;listSections.forEach(sec=>{let match=false;sec.querySelectorAll('.item').forEach(item=>{const m=item.dataset.name.includes(q);item.classList.toggle('hidden',!m);if(m){match=true;any=true;}});sec.classList.toggle('hidden',!match);});
+      let any=false;listSections.forEach(sec=>{let match=false;sec.querySelectorAll('.item').forEach(item=>{const nameText=(item.dataset.name||item.textContent||'').toLowerCase();const m=nameText.includes(q);item.classList.toggle('hidden',!m);if(m){match=true;any=true;}});sec.classList.toggle('hidden',!match);});
       noResults.classList.toggle('show',!any);
     });
     searchClear.addEventListener('click',()=>{searchInput.value='';searchInput.dispatchEvent(new Event('input'));searchInput.focus();});
