@@ -11,8 +11,10 @@
 :root{--green:#0F9D58;--green-dark:#0A6B3D;--green-deep:#073F24;--green-light:#3FC17E;--amber:#F5A623;--ink:#122017;--cream:#F5FAF7;--paper:#FFFFFF;--line:rgba(18,32,23,0.09);--shadow:0 10px 30px -12px rgba(10,107,61,0.22);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-serif;display:flex;justify-content:center;padding:0 0 60px;}
-.app{width:100%;max-width:430px;background:var(--cream);min-height:100vh;position:relative;}
+html,body{width:100%;overflow-x:hidden;}
+body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-serif;padding:0 0 60px;}
+#root{width:100%;}
+.app{width:100%;max-width:430px;margin:0 auto;background:var(--cream);min-height:100vh;position:relative;}
 .state-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px;text-align:center;}
 .state-screen .emoji{font-size:44px;}
 .state-screen p{font-size:13.5px;color:#5a6b60;line-height:1.7;}
@@ -25,7 +27,11 @@ body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-s
 .reveal.in{opacity:1;transform:translateY(0);}
 .hero{position:relative;background:linear-gradient(180deg,var(--green-deep) 0%,var(--green-dark) 55%,var(--green) 100%);padding:34px 22px 62px;color:#fff;overflow:hidden;isolation:isolate;text-align:center;}
 .hero-pattern{position:absolute;inset:0;z-index:-1;opacity:.12;background-image:radial-gradient(circle,#fff 1.5px,transparent 1.5px);background-size:20px 20px;}
-.logo-img{width:56px;height:56px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 10px 22px -8px rgba(0,0,0,.4);background:#fff;}
+.logo-img{width:56px;height:56px;border-radius:16px;object-fit:cover;margin:0 auto 12px;display:block;box-shadow:0 10px 22px -8px rgba(0,0,0,.4);background:transparent;}
+.logo-wrap{width:56px;height:56px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;}
+.hero-top{display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.wheel{width:34px;height:34px;flex:none;animation:spin 7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
 .badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
 .eyebrow{font-family:'Poppins',sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:rgba(255,255,255,0.09);padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.18);}
 .status-pill{font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;}
@@ -56,6 +62,7 @@ h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:30px;line-heigh
 .section-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:18px;color:var(--green-deep);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
 .item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
 .item:last-child{border-bottom:none;}
+.item:nth-child(even){background:rgba(10,107,61,0.025);margin:0 -18px;padding-left:18px;padding-right:18px;border-radius:8px;}
 .item.hidden{display:none;}
 .item-name{font-weight:500;font-size:14.5px;flex:1;}
 .item-price{font-family:'Poppins',sans-serif;font-weight:600;font-size:14px;color:var(--green-dark);white-space:nowrap;background:rgba(10,107,61,0.08);padding:3px 9px;border-radius:100px;}
@@ -68,6 +75,8 @@ h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:30px;line-heigh
 .row-flex:last-child{border-bottom:none;}
 .card-maroon{background:linear-gradient(150deg,var(--green-dark),var(--green-deep));color:#fff;}
 .card-maroon .section-title{color:var(--amber);}
+.card-teal{background:linear-gradient(150deg,#2F6F5E,#1D4B3F);color:#fff;}
+.card-teal .section-title{color:#fff;}
 .row-plain{font-size:13px;padding:6px 0;line-height:1.55;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
 .live-tag{font-size:9.5px;background:var(--amber);color:var(--green-deep);padding:1px 7px;border-radius:100px;font-weight:700;font-family:'Poppins',sans-serif;}
 .review-card{border-bottom:1px solid var(--line);padding:12px 0;}
@@ -104,6 +113,8 @@ footer{padding:26px 18px 90px;}
 .fab{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;text-decoration:none;box-shadow:0 12px 24px -8px rgba(0,0,0,.35);border:none;cursor:pointer;}
 .fab.call{background:var(--green-dark);color:#fff;}
 .fab.wa{background:#25D366;color:#fff;}
+.fab.top{width:40px;height:40px;background:var(--paper);color:var(--green-dark);border:1px solid var(--line);font-size:16px;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;}
+.fab.top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:'Poppins',sans-serif;font-size:12.5px;padding:10px 18px;border-radius:100px;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:50;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 .order-bar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(140%);width:calc(100% - 32px);max-width:398px;background:var(--green-deep);color:#fff;border-radius:16px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 18px 34px -12px rgba(7,63,36,0.6);z-index:46;transition:transform .3s ease;font-family:'Poppins',sans-serif;}
@@ -149,7 +160,9 @@ function renderPage(slug,d){
       ${(d.ticker&&d.ticker.length)?`<div class="ticker"><div class="ticker-track" id="ticker-track"></div></div>`:''}
       <div class="hero">
         <div class="hero-pattern"></div>
-        ${d.logoUrl?`<img class="logo-img" src="${d.logoUrl}" alt="logo">`:''}
+        <div class="hero-top">
+          ${d.logoUrl?`<img class="logo-img" src="${d.logoUrl}" alt="logo" onerror="this.closest('.hero-top').innerHTML='<svg class=&quot;wheel&quot; viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot;><circle cx=&quot;24&quot; cy=&quot;24&quot; r=&quot;20&quot; stroke=&quot;%23F5A623&quot; stroke-width=&quot;2.5&quot;/><circle cx=&quot;24&quot; cy=&quot;24&quot; r=&quot;4&quot; fill=&quot;%23F5A623&quot;/><line x1=&quot;24&quot; y1=&quot;4&quot; x2=&quot;24&quot; y2=&quot;44&quot; stroke=&quot;%23F5A623&quot; stroke-width=&quot;2&quot;/><line x1=&quot;4&quot; y1=&quot;24&quot; x2=&quot;44&quot; y2=&quot;24&quot; stroke=&quot;%23F5A623&quot; stroke-width=&quot;2&quot;/><line x1=&quot;9.5&quot; y1=&quot;9.5&quot; x2=&quot;38.5&quot; y2=&quot;38.5&quot; stroke=&quot;%23F5A623&quot; stroke-width=&quot;2&quot;/><line x1=&quot;38.5&quot; y1=&quot;9.5&quot; x2=&quot;9.5&quot; y2=&quot;38.5&quot; stroke=&quot;%23F5A623&quot; stroke-width=&quot;2&quot;/></svg>'">`:`<svg class="wheel" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#F5A623" stroke-width="2.5"/><circle cx="24" cy="24" r="4" fill="#F5A623"/><line x1="24" y1="4" x2="24" y2="44" stroke="#F5A623" stroke-width="2"/><line x1="4" y1="24" x2="44" y2="24" stroke="#F5A623" stroke-width="2"/><line x1="9.5" y1="9.5" x2="38.5" y2="38.5" stroke="#F5A623" stroke-width="2"/><line x1="38.5" y1="9.5" x2="9.5" y2="38.5" stroke="#F5A623" stroke-width="2"/></svg>`}
+        </div>
         <div class="badge-row">${d.eyebrow?`<span class="eyebrow">${d.eyebrow}</span>`:''}<span class="status-pill ${open?'open':'closed'}"><span class="status-dot"></span>${open?'এখন খোলা':'এখন বন্ধ'}</span></div>
         <h1>${d.name||slug}</h1>
         ${d.tagline?`<div class="tagline">${d.tagline}</div>`:''}
@@ -163,11 +176,16 @@ function renderPage(slug,d){
       ${(d.aboutText||(d.whyUs&&d.whyUs.length))?`<div class="section-card reveal" id="sec-about"><div class="section-title">🏪 আমাদের সম্পর্কে</div>${d.aboutText?`<div class="about-p">${d.aboutText}</div>`:''}${(d.whyUs&&d.whyUs.length)?`<div class="why-grid">${d.whyUs.map(w=>`<div class="why-row"><span class="tick">✓</span>${w}</div>`).join('')}</div>`:''}</div>`:''}
       <footer>
         <div class="cta-row">${phoneTel?`<a class="cta primary" href="tel:${phoneTel}">☎️ কল করুন</a>`:''}${whatsapp?`<a class="cta secondary" href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener">💬 WhatsApp</a>`:''}</div>
+        <div class="cta-row2" style="display:flex;gap:10px;margin-bottom:16px;">
+          <button class="cta secondary" id="footer-share">📤 পেজ শেয়ার করুন</button>
+          ${d.reviewUrl?`<a class="cta secondary" href="${d.reviewUrl}" target="_blank" rel="noopener">⭐ গুগলে রিভিউ দিন</a>`:''}
+        </div>
         <div class="qr-box"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&color=0A6B3D&bgcolor=F5FAF7&data=${encodeURIComponent(pageUrl)}" alt="QR code"><div class="qr-text"><b>টেবিলে এই QR-টাই থাকবে</b>তথ্য আপডেট হলেও এই একই QR কোড কাজ করবে</div></div>
         <div class="powered"><b>Powered by Open QR</b><br>Smart Digital Business Profile<br>🌐 Open QR</div>
       </footer>
     </div>
     <div class="fab-col">
+      <button class="fab top" id="fab-top" aria-label="উপরে যান">↑</button>
       ${whatsapp?`<a class="fab wa" href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>`:''}
       ${phoneTel?`<a class="fab call" href="tel:${phoneTel}" aria-label="কল করুন">📞</a>`:''}
     </div>
@@ -189,6 +207,14 @@ function renderPage(slug,d){
   if(d.facebookUrl)infoHtml+=`<a href="${d.facebookUrl}" target="_blank" rel="noopener"><span class="ic">📘</span>Facebook</a>`;
   if(d.youtubeUrl)infoHtml+=`<a href="${d.youtubeUrl}" target="_blank" rel="noopener"><span class="ic">▶️</span>YouTube</a>`;
   infoCard.innerHTML=infoHtml;
+
+  const shareBtn=document.getElementById('footer-share');
+  if(shareBtn){
+    shareBtn.addEventListener('click',()=>{
+      if(navigator.share){ navigator.share({title:d.name||slug, text:d.tagline||'', url:pageUrl}).catch(()=>{}); }
+      else { copyText(pageUrl); }
+    });
+  }
 
   const nav=document.getElementById('nav-tabs');
   const sroot=document.getElementById('sections-root');
@@ -215,6 +241,18 @@ function renderPage(slug,d){
   if(d.payments&&d.payments.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
     wrap.innerHTML=`<div class="section-title">💳 বিল পরিশোধ করুন</div><div class="pay-grid">${d.payments.filter(p=>p.number).map(p=>`<div class="pay-card" data-number="${p.number}"><div class="dot" style="background:${p.color||'#0F9D58'};"></div><b>${p.name}</b><span>${p.number}</span></div>`).join('')}</div><div class="pay-hint">নম্বরে ট্যাপ করলে কপি হয়ে যাবে</div>`;
+    sroot.appendChild(wrap);
+  }
+
+  if(d.schedule){
+    const WEEKDAY_NAMES=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+    const sch=d.schedule;
+    const rows=[];
+    rows.push('🗓️ প্রতিদিন খোলা'+(sch.closedWeekday>=0?' ('+WEEKDAY_NAMES[sch.closedWeekday]+' ছাড়া)':''));
+    rows.push('⏰ '+(sch.hoursShort || (String(sch.openHour||0).padStart(2,'0')+':'+String(sch.openMinute||0).padStart(2,'0')+' – '+String(sch.closeHour||0).padStart(2,'0')+':'+String(sch.closeMinute||0).padStart(2,'0'))));
+    if(sch.closedWeekday>=0) rows.push('🔴 '+WEEKDAY_NAMES[sch.closedWeekday]+' সাপ্তাহিক ছুটি');
+    const wrap=document.createElement('section');wrap.className='section-card reveal card-teal';
+    wrap.innerHTML=`<div class="section-title">🕒 ব্যবসা পরিচালনার সময়সূচি</div>`+rows.map(r=>`<div class="row-plain">${r}</div>`).join('');
     sroot.appendChild(wrap);
   }
 
@@ -272,10 +310,19 @@ function renderPage(slug,d){
   const searchInput=document.getElementById('search-input');
   if(searchInput){
     const searchClear=document.getElementById('search-clear');const noResults=document.getElementById('no-results');
-    const listSections=Array.from(document.querySelectorAll('.section-card')).filter(s=>s.querySelector('.item'));
+    const allCards=Array.from(document.querySelectorAll('.section-card'));
+    const listSections=allCards.filter(s=>s.querySelector('.item'));
+    const otherCards=allCards.filter(s=>!s.querySelector('.item'));
     searchInput.addEventListener('input',()=>{
       const q=searchInput.value.trim().toLowerCase();searchClear.classList.toggle('show',q.length>0);
-      if(!q){document.querySelectorAll('.item.hidden').forEach(i=>i.classList.remove('hidden'));listSections.forEach(s=>s.classList.remove('hidden'));noResults.classList.remove('show');return;}
+      if(!q){
+        document.querySelectorAll('.item.hidden').forEach(i=>i.classList.remove('hidden'));
+        listSections.forEach(s=>s.classList.remove('hidden'));
+        otherCards.forEach(s=>s.classList.remove('hidden'));
+        noResults.classList.remove('show');
+        return;
+      }
+      otherCards.forEach(s=>s.classList.add('hidden'));
       let any=false;listSections.forEach(sec=>{let match=false;sec.querySelectorAll('.item').forEach(item=>{const nameText=(item.dataset.name||item.textContent||'').toLowerCase();const m=nameText.includes(q);item.classList.toggle('hidden',!m);if(m){match=true;any=true;}});sec.classList.toggle('hidden',!match);});
       noResults.classList.toggle('show',!any);
     });
@@ -284,6 +331,18 @@ function renderPage(slug,d){
 
   const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');revealObserver.unobserve(entry.target);}});},{threshold:0.12});
   document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+  const scrollSections=tabs.map(t=>document.getElementById(t.dataset.target)).filter(Boolean);
+  if(scrollSections.length){
+    const navObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)setActive(entry.target.id);});},{rootMargin:'-90px 0px -65% 0px',threshold:0});
+    scrollSections.forEach(sec=>navObserver.observe(sec));
+  }
+
+  const fabTop=document.getElementById('fab-top');
+  if(fabTop){
+    window.addEventListener('scroll',()=>{fabTop.classList.toggle('show',window.scrollY>500);});
+    fabTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  }
 
   document.getElementById('order-send').addEventListener('click',()=>{
     if(cart.size===0)return;
