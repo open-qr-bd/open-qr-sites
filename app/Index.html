@@ -10,20 +10,20 @@
 <meta property="og:type" content="website">
 <link id="favicon-link" rel="icon" href="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2:wght@500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#241A15;--cream:#FBF7EE;--paper:#FFFFFF;--maroon:#7A2323;--maroon-deep:#4A1414;--gold:#E0A527;--teal:#2F6F5E;--line:rgba(36,26,21,0.09);--shadow:0 10px 30px -12px rgba(74,20,20,0.18);}
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-serif;line-height:1.6;padding:0 0 60px;}
+body{background:var(--cream);color:var(--ink);font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;line-height:1.7;padding:0 0 60px;text-rendering:optimizeLegibility;}
 #root{width:100%;}
 .app{width:100%;max-width:430px;margin:0 auto;background:var(--cream);min-height:100vh;position:relative;overflow-x:clip;}
 .state-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px;text-align:center;}
 .state-screen .emoji{font-size:44px;}
-.state-screen p{font-size:13.5px;color:#7a6c60;line-height:1.7;}
-.state-screen a{font-family:'Hind Siliguri',sans-serif;font-weight:600;font-size:13px;color:var(--maroon);text-decoration:none;border:1px solid var(--line);padding:10px 18px;border-radius:100px;line-height:1.5;}
+.state-screen p{font-size:13.5px;color:#7a6c60;line-height:1.8;}
+.state-screen a{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-weight:600;font-size:13px;color:var(--maroon);text-decoration:none;border:1px solid var(--line);padding:10px 18px;border-radius:100px;line-height:1.6;}
 .loader{width:40px;height:40px;border:4px solid var(--line);border-top-color:var(--maroon);border-radius:50%;animation:spin .8s linear infinite;}
-.ticker{background:var(--maroon-deep);color:var(--gold);overflow:hidden;white-space:nowrap;padding:7px 0;font-family:'Hind Siliguri',sans-serif;font-size:11px;font-weight:500;line-height:1.6;}
+.ticker{background:var(--maroon-deep);color:var(--gold);overflow:hidden;white-space:nowrap;padding:8px 0;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:11px;font-weight:500;line-height:1.8;}
 .ticker-track{display:inline-block;padding-left:100%;animation:ticker-scroll 22s linear infinite;}
 .ticker-track span{margin-right:36px;}
 @keyframes ticker-scroll{from{transform:translateX(0);}to{transform:translateX(-100%);}}
@@ -37,94 +37,94 @@ body{background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-s
 .wheel{width:34px;height:34px;flex:none;animation:spin 7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .badge-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;}
-.eyebrow{font-family:'Hind Siliguri',sans-serif;font-size:10.5px;line-height:1.5;letter-spacing:.03em;color:var(--gold);background:rgba(255,255,255,0.08);padding:5px 10px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);font-weight:600;}
-.status-pill{font-family:'Hind Siliguri',sans-serif;font-size:10.5px;line-height:1.5;font-weight:600;padding:5px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;}
+.eyebrow{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:10.5px;line-height:1.8;letter-spacing:.03em;color:var(--gold);background:rgba(255,255,255,0.08);padding:6px 10px;border-radius:100px;border:1px solid rgba(255,255,255,0.16);font-weight:600;}
+.status-pill{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:10.5px;line-height:1.8;font-weight:600;padding:6px 10px;border-radius:100px;display:inline-flex;align-items:center;gap:5px;}
 .status-pill.open{background:rgba(60,180,120,.18);color:#8FE3B8;border:1px solid rgba(143,227,184,.35);}
 .status-pill.closed{background:rgba(255,255,255,.1);color:#EFDFC9;border:1px solid rgba(255,255,255,.2);}
 .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor;}
-h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:32px;line-height:1.3;letter-spacing:-.01em;}
-.tagline{margin-top:9px;font-size:13.5px;line-height:1.7;color:#EFDFC9;max-width:88%;margin-left:auto;margin-right:auto;}
+h1{font-family:'Baloo Da 2',sans-serif;font-weight:800;font-size:32px;line-height:1.35;letter-spacing:-.01em;}
+.tagline{margin-top:9px;font-size:13.5px;line-height:1.8;color:#EFDFC9;max-width:88%;margin-left:auto;margin-right:auto;}
 .info-card{position:relative;margin:-40px 18px 0;background:var(--paper);border-radius:18px;box-shadow:var(--shadow);display:flex;overflow:hidden;z-index:3;}
-.info-card a{flex:1;text-align:center;padding:14px 4px 12px;font-size:10.5px;line-height:1.4;color:var(--ink);text-decoration:none;border-right:1px solid var(--line);font-family:'Hind Siliguri',sans-serif;transition:background .15s ease;}
+.info-card a{flex:1;text-align:center;padding:15px 4px 13px;font-size:10.5px;line-height:1.6;color:var(--ink);text-decoration:none;border-right:1px solid var(--line);font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;transition:background .15s ease;}
 .info-card a:active{background:var(--cream);}
 .info-card>:last-child{border-right:none;}
 .info-card .ic{font-size:17px;display:block;margin-bottom:4px;}
 .quickpay-card{margin:14px 18px 0;background:var(--paper);border-radius:18px;box-shadow:var(--shadow);padding:16px 18px 14px;}
-.quickpay-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:15.5px;line-height:1.5;color:var(--maroon);margin-bottom:2px;display:flex;align-items:center;gap:7px;}
-.quickpay-sub{font-size:11.5px;line-height:1.6;color:#7a6c60;margin-bottom:8px;}
+.quickpay-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:15.5px;line-height:1.6;color:var(--maroon);margin-bottom:2px;display:flex;align-items:center;gap:7px;}
+.quickpay-sub{font-size:11.5px;line-height:1.8;color:#7a6c60;margin-bottom:8px;}
 .search-wrap{padding:16px 16px 0;}
-.search-box{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:11px 14px;box-shadow:var(--shadow);}
-.search-box input{border:none;outline:none;flex:1;font-family:'Hind Siliguri',sans-serif;font-size:13.5px;line-height:1.6;background:transparent;color:var(--ink);}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow);}
+.search-box input{border:none;outline:none;flex:1;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:13.5px;line-height:1.8;background:transparent;color:var(--ink);}
 .search-box input::placeholder{color:#a89a8c;}
 .search-clear{display:none;border:none;background:var(--cream);color:var(--maroon);width:20px;height:20px;border-radius:50%;font-size:12px;cursor:pointer;}
 .search-clear.show{display:block;}
-.no-results{display:none;text-align:center;padding:24px 16px;color:#a89a8c;font-size:13px;line-height:1.6;}
+.no-results{display:none;text-align:center;padding:24px 16px;color:#a89a8c;font-size:13px;line-height:1.8;}
 .no-results.show{display:block;}
 .nav-wrap{position:sticky;top:0;z-index:20;background:rgba(251,247,238,0.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding-top:14px;border-bottom:1px solid var(--line);}
-.tabs{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;}
+.tabs{display:flex;gap:8px;padding:0 16px 14px;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{flex:none;font-family:'Hind Siliguri',sans-serif;font-size:12px;line-height:1.5;font-weight:600;padding:9px 14px;border-radius:100px;background:var(--paper);color:var(--maroon);white-space:nowrap;border:1px solid var(--line);text-decoration:none;cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .15s ease;}
+.tab{flex:none;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:12px;line-height:1.8;font-weight:600;padding:10px 14px;border-radius:100px;background:var(--paper);color:var(--maroon);white-space:nowrap;border:1px solid var(--line);text-decoration:none;cursor:pointer;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .15s ease;}
 .tab:active{transform:scale(.96);}
 .tab.active{background:var(--maroon);color:#fff;border-color:var(--maroon);box-shadow:0 6px 14px -6px rgba(122,35,35,0.55);}
-.section-card{background:var(--paper);margin:16px 16px 0;border-radius:18px;padding:18px 18px 6px;box-shadow:var(--shadow);scroll-margin-top:74px;transition:transform .12s ease;}
+.section-card{background:var(--paper);margin:16px 16px 0;border-radius:18px;padding:18px 18px 8px;box-shadow:var(--shadow);scroll-margin-top:74px;transition:transform .12s ease;}
 .section-card.hidden{display:none;}
 .section-card:active{transform:scale(.997);}
-.section-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:17px;line-height:1.5;color:var(--maroon);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-title{font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:17px;line-height:1.6;color:var(--maroon);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
 .section-icon{width:34px;height:34px;flex:none;border-radius:11px;background:rgba(122,35,35,0.08);display:flex;align-items:center;justify-content:center;font-size:16px;}
 .card-gold .section-icon{background:rgba(255,255,255,0.22);}
 .card-maroon .section-icon{background:rgba(255,255,255,0.14);}
 .card-teal .section-icon{background:rgba(255,255,255,0.16);}
-.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 0;border-bottom:1px solid var(--line);}
 .item:last-child{border-bottom:none;}
 .item:nth-child(even){background:rgba(122,35,35,0.025);margin:0 -18px;padding-left:18px;padding-right:18px;border-radius:8px;}
 .item.hidden{display:none;}
-.item-name{font-weight:500;font-size:14.5px;line-height:1.65;flex:1;}
-.item-price{font-family:'Hind Siliguri',sans-serif;font-weight:700;font-size:14px;line-height:1.7;color:var(--maroon);white-space:nowrap;background:rgba(122,35,35,0.08);padding:4px 10px;border-radius:100px;}
+.item-name{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-weight:500;font-size:14.5px;line-height:2;flex:1;padding:2px 0;}
+.item-price{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-weight:700;font-size:14px;line-height:2;color:var(--maroon);white-space:nowrap;background:rgba(122,35,35,0.08);padding:5px 11px;border-radius:100px;display:inline-block;}
 .item-check{width:21px;height:21px;flex:none;border:2px solid var(--maroon);border-radius:7px;background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:13px;line-height:1;color:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .15s ease,color .15s ease;}
 .item-check.checked{background:var(--maroon);color:#fff;}
 .item.checked{background:rgba(122,35,35,0.06);border-radius:8px;}
 .card-gold{background:linear-gradient(150deg,var(--gold),#C9860F);color:#fff;}
 .card-gold .section-title{color:#fff;}
-.row-flex{display:flex;justify-content:space-between;padding:8px 0;font-size:13.5px;line-height:1.6;border-bottom:1px solid rgba(255,255,255,.28);}
+.row-flex{display:flex;justify-content:space-between;padding:9px 0;font-size:13.5px;line-height:1.9;border-bottom:1px solid rgba(255,255,255,.28);}
 .row-flex:last-child{border-bottom:none;}
 .card-maroon{background:linear-gradient(150deg,var(--maroon),var(--maroon-deep));color:#fff;}
 .card-maroon .section-title{color:var(--gold);}
 .card-teal{background:linear-gradient(150deg,var(--teal),#1D4B3F);color:#fff;}
 .card-teal .section-title{color:#fff;}
-.row-plain{font-size:13px;padding:7px 0;line-height:1.7;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
-.live-tag{font-size:9.5px;line-height:1.5;background:var(--gold);color:var(--maroon-deep);padding:2px 7px;border-radius:100px;font-weight:700;font-family:'Hind Siliguri',sans-serif;}
-.review-card{border-bottom:1px solid var(--line);padding:12px 0;}
+.row-plain{font-size:13px;padding:8px 0;line-height:1.9;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.live-tag{font-size:9.5px;line-height:1.8;background:var(--gold);color:var(--maroon-deep);padding:2px 7px;border-radius:100px;font-weight:700;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;}
+.review-card{border-bottom:1px solid var(--line);padding:13px 0;}
 .review-card:last-child{border-bottom:none;padding-bottom:16px;}
 .review-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
-.review-name{font-weight:600;font-size:13.5px;line-height:1.6;}
+.review-name{font-weight:600;font-size:13.5px;line-height:1.8;}
 .review-stars{color:var(--gold);font-size:12px;letter-spacing:1px;}
-.review-text{font-size:12.5px;line-height:1.7;color:#5a4c40;}
-.booking-p{font-size:13px;line-height:1.75;color:#4a3d33;margin-bottom:14px;}
-.booking-btn{display:block;text-align:center;font-family:'Hind Siliguri',sans-serif;font-weight:600;font-size:13.5px;line-height:1.6;background:var(--teal);color:#fff;padding:13px;border-radius:14px;text-decoration:none;transition:transform .12s ease;}
+.review-text{font-size:12.5px;line-height:1.9;color:#5a4c40;}
+.booking-p{font-size:13px;line-height:1.9;color:#4a3d33;margin-bottom:14px;}
+.booking-btn{display:block;text-align:center;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-weight:600;font-size:13.5px;line-height:1.8;background:var(--teal);color:#fff;padding:13px;border-radius:14px;text-decoration:none;transition:transform .12s ease;}
 .booking-btn:active{transform:scale(.98);}
 .pay-grid{display:flex;gap:8px;margin-top:6px;}
-.pay-card{flex:1;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:12px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s ease;}
+.pay-card{flex:1;background:var(--cream);border:1px solid var(--line);border-radius:12px;padding:13px 6px;text-align:center;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s ease;}
 .pay-card:active{transform:scale(.95);}
 .pay-card .dot{width:14px;height:14px;border-radius:50%;margin:0 auto 6px;}
-.pay-card b{font-size:11.5px;line-height:1.6;display:block;margin-bottom:3px;}
-.pay-card span{font-size:10.5px;line-height:1.6;color:#7a6c60;}
-.pay-hint{font-size:9.5px;line-height:1.6;color:#a89a8c;margin-top:6px;text-align:center;}
-.about-p{font-size:13px;line-height:1.8;margin-bottom:10px;color:#4a3d33;}
-.why-grid{display:flex;flex-direction:column;gap:8px;padding-bottom:16px;}
-.why-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.65;}
+.pay-card b{font-size:11.5px;line-height:1.8;display:block;margin-bottom:3px;}
+.pay-card span{font-size:10.5px;line-height:1.8;color:#7a6c60;}
+.pay-hint{font-size:9.5px;line-height:1.8;color:#a89a8c;margin-top:6px;text-align:center;}
+.about-p{font-size:13px;line-height:1.9;margin-bottom:10px;color:#4a3d33;}
+.why-grid{display:flex;flex-direction:column;gap:9px;padding-bottom:16px;}
+.why-row{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.85;}
 .why-row .tick{color:var(--teal);font-weight:700;flex:none;}
 footer{padding:26px 18px 90px;}
 .cta-row{display:flex;gap:10px;margin-bottom:16px;}
-.cta{flex:1;font-family:'Hind Siliguri',sans-serif;font-size:13px;line-height:1.6;font-weight:600;text-align:center;padding:13px 8px;border-radius:14px;text-decoration:none;border:none;cursor:pointer;transition:transform .12s ease;}
+.cta{flex:1;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:13px;line-height:1.8;font-weight:600;text-align:center;padding:13px 8px;border-radius:14px;text-decoration:none;border:none;cursor:pointer;transition:transform .12s ease;}
 .cta:active{transform:scale(.97);}
 .cta.primary{background:var(--maroon);color:#fff;box-shadow:0 10px 20px -10px rgba(122,35,35,.6);}
 .cta.secondary{background:var(--paper);color:var(--maroon);border:1px solid var(--line);}
 .cta-row2{display:flex;gap:10px;margin-bottom:16px;}
 .qr-box{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow);}
 .qr-box img{width:68px;height:68px;border-radius:10px;}
-.qr-text{font-size:11px;line-height:1.6;color:#7a6c60;}
-.qr-text b{color:var(--ink);display:block;font-size:12.5px;line-height:1.6;margin-bottom:2px;}
-.powered{text-align:center;margin-top:20px;font-family:'Hind Siliguri',sans-serif;font-size:10px;line-height:1.8;color:#a89a8c;}
+.qr-text{font-size:11px;line-height:1.8;color:#7a6c60;}
+.qr-text b{color:var(--ink);display:block;font-size:12.5px;line-height:1.8;margin-bottom:2px;}
+.powered{text-align:center;margin-top:20px;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:10px;line-height:2;color:#a89a8c;}
 .powered b{color:var(--maroon);font-size:11px;}
 .spacer{height:14px;}
 .fab-col{position:fixed;right:18px;bottom:22px;display:flex;flex-direction:column;gap:10px;z-index:40;align-items:flex-end;}
@@ -134,13 +134,13 @@ footer{padding:26px 18px 90px;}
 .fab.wa{background:#25D366;color:#fff;}
 .fab.top{width:40px;height:40px;background:var(--paper);color:var(--maroon);border:1px solid var(--line);font-size:16px;opacity:0;pointer-events:none;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease;}
 .fab.top.show{opacity:1;pointer-events:auto;transform:translateY(0);}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:'Hind Siliguri',sans-serif;font-size:12.5px;line-height:1.6;padding:10px 18px;border-radius:100px;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:50;white-space:nowrap;}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:12.5px;line-height:1.8;padding:10px 18px;border-radius:100px;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:50;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.order-bar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(140%);width:calc(100% - 32px);max-width:398px;background:var(--maroon-deep);color:#fff;border-radius:16px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 18px 34px -12px rgba(74,20,20,0.6);z-index:46;transition:transform .3s ease;font-family:'Hind Siliguri',sans-serif;}
+.order-bar{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(140%);width:calc(100% - 32px);max-width:398px;background:var(--maroon-deep);color:#fff;border-radius:16px;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 18px 34px -12px rgba(74,20,20,0.6);z-index:46;transition:transform .3s ease;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;}
 .order-bar.show{transform:translateX(-50%) translateY(0);}
-.order-bar-info{font-size:11.5px;line-height:1.6;color:#EFDFC9;}
-.order-bar-info b{font-size:14px;line-height:1.5;display:block;color:#fff;font-family:'Baloo Da 2',sans-serif;}
-.order-bar button{flex:none;font-family:'Hind Siliguri',sans-serif;font-weight:700;font-size:12.5px;line-height:1.6;background:var(--gold);color:var(--maroon-deep);border:none;padding:11px 16px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:transform .12s ease;}
+.order-bar-info{font-size:11.5px;line-height:1.8;color:#EFDFC9;}
+.order-bar-info b{font-size:14px;line-height:1.7;display:block;color:#fff;font-family:'Baloo Da 2',sans-serif;}
+.order-bar button{flex:none;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-weight:700;font-size:12.5px;line-height:1.8;background:var(--gold);color:var(--maroon-deep);border:none;padding:12px 16px;border-radius:100px;cursor:pointer;white-space:nowrap;transition:transform .12s ease;}
 .order-bar button:active{transform:scale(.96);}
 </style>
 </head>
@@ -155,6 +155,19 @@ firebase.initializeApp(firebaseConfig);
 const db=firebase.firestore();
 const root=document.getElementById('root');
 const OPENQR_SUPPORT_NUMBER="01713-816247";
+
+// --- Fixes the well-known Android text-shaping bug where a Bengali
+// character/digit sitting directly against "(" or ")" (no space) gets its
+// vertical mark-positioning miscalculated and appears clipped top/bottom
+// — e.g. "(১" or "১)". We insert an invisible hair-space (U+200A) between
+// the bracket and the Bengali character so the shaping engine treats them
+// as separate runs. Visually this is imperceptible. ---
+function bn(str){
+  if(str===undefined||str===null)return str;
+  return String(str)
+    .replace(/\(([\u0980-\u09FF])/g,'(\u200A$1')
+    .replace(/([\u0980-\u09FF])\)/g,'$1\u200A)');
+}
 
 function getSlug(){const parts=window.location.pathname.split('/').filter(Boolean);return parts[0]||'';}
 function waLink(n,m){return"https://wa.me/"+n+"?text="+encodeURIComponent(m);}
@@ -174,7 +187,7 @@ function setFavicon(url){
 }
 
 function renderState(emoji,title,msg){
-  root.innerHTML=`<div class="state-screen"><div class="emoji">${emoji}</div><h2 style="font-family:'Baloo Da 2',sans-serif;color:var(--maroon);font-size:18px;line-height:1.5;">${title}</h2><p>${msg}</p><a href="https://openqr-bd.netlify.app/">Open QR হোমপেজে যান</a></div>`;
+  root.innerHTML=`<div class="state-screen"><div class="emoji">${emoji}</div><h2 style="font-family:'Baloo Da 2',sans-serif;color:var(--maroon);font-size:18px;line-height:1.6;">${title}</h2><p>${msg}</p><a href="https://openqr-bd.netlify.app/">Open QR হোমপেজে যান</a></div>`;
 }
 function renderLoading(){
   root.innerHTML=`<div class="state-screen"><div class="loader"></div><p>তথ্য লোড হচ্ছে, একটু অপেক্ষা করুন...</p></div>`;
@@ -209,27 +222,27 @@ function renderPage(slug,d){
           ${d.logoUrl?`<img class="logo-img" src="${d.logoUrl}" alt="logo" onerror="this.closest('.hero-top').innerHTML='<svg class=&quot;wheel&quot; viewBox=&quot;0 0 48 48&quot; fill=&quot;none&quot;><circle cx=&quot;24&quot; cy=&quot;24&quot; r=&quot;20&quot; stroke=&quot;%23E0A527&quot; stroke-width=&quot;2.5&quot;/><circle cx=&quot;24&quot; cy=&quot;24&quot; r=&quot;4&quot; fill=&quot;%23E0A527&quot;/><line x1=&quot;24&quot; y1=&quot;4&quot; x2=&quot;24&quot; y2=&quot;44&quot; stroke=&quot;%23E0A527&quot; stroke-width=&quot;2&quot;/><line x1=&quot;4&quot; y1=&quot;24&quot; x2=&quot;44&quot; y2=&quot;24&quot; stroke=&quot;%23E0A527&quot; stroke-width=&quot;2&quot;/><line x1=&quot;9.5&quot; y1=&quot;9.5&quot; x2=&quot;38.5&quot; y2=&quot;38.5&quot; stroke=&quot;%23E0A527&quot; stroke-width=&quot;2&quot;/><line x1=&quot;38.5&quot; y1=&quot;9.5&quot; x2=&quot;9.5&quot; y2=&quot;38.5&quot; stroke=&quot;%23E0A527&quot; stroke-width=&quot;2&quot;/></svg>'">`:`<svg class="wheel" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#E0A527" stroke-width="2.5"/><circle cx="24" cy="24" r="4" fill="#E0A527"/><line x1="24" y1="4" x2="24" y2="44" stroke="#E0A527" stroke-width="2"/><line x1="4" y1="24" x2="44" y2="24" stroke="#E0A527" stroke-width="2"/><line x1="9.5" y1="9.5" x2="38.5" y2="38.5" stroke="#E0A527" stroke-width="2"/><line x1="38.5" y1="9.5" x2="9.5" y2="38.5" stroke="#E0A527" stroke-width="2"/></svg>`}
         </div>
         <div class="badge-row">
-          ${d.eyebrow?`<span class="eyebrow">${d.eyebrow}</span>`:''}
+          ${d.eyebrow?`<span class="eyebrow">${bn(d.eyebrow)}</span>`:''}
           ${d.verified?`<span class="eyebrow">✅ ভেরিফায়েড ব্যবসা</span>`:''}
           ${avgRating?`<span class="eyebrow">⭐ ${avgRating} · ${d.reviews.length} রিভিউ</span>`:''}
           <span class="status-pill ${open?'open':'closed'}"><span class="status-dot"></span>${open?'এখন খোলা':'এখন বন্ধ'}</span>
         </div>
-        <h1>${d.name||slug}</h1>
-        ${d.tagline?`<div class="tagline">${d.tagline}</div>`:''}
+        <h1>${bn(d.name||slug)}</h1>
+        ${d.tagline?`<div class="tagline">${bn(d.tagline)}</div>`:''}
         <div class="hero-divider"></div>
       </div>
       <div class="info-card" id="info-card"></div>
       ${payments.length?`<div class="quickpay-card reveal" id="quickpay-card">
         <div class="quickpay-title">💳 বিল পরিশোধ করুন</div>
         <div class="quickpay-sub">নম্বরে ট্যাপ করলেই কপি হয়ে যাবে</div>
-        <div class="pay-grid">${payments.map(p=>`<div class="pay-card" data-number="${p.number}"><div class="dot" style="background:${p.color||'#7A2323'};"></div><b>${p.name}</b><span>${p.number}</span></div>`).join('')}</div>
+        <div class="pay-grid">${payments.map(p=>`<div class="pay-card" data-number="${p.number}"><div class="dot" style="background:${p.color||'#7A2323'};"></div><b>${bn(p.name)}</b><span>${p.number}</span></div>`).join('')}</div>
       </div>`:''}
       <div class="search-wrap"><div class="search-box"><span>🔍</span><input id="search-input" type="text" placeholder="খুঁজুন... (সেবা, ডাক্তার, পণ্য)"><button class="search-clear" id="search-clear">✕</button></div></div>
       <div class="nav-wrap"><nav class="tabs" id="nav-tabs"></nav></div>
       <div class="spacer"></div>
       <div id="sections-root"></div>
       <div class="no-results" id="no-results">😕 এই নামে কিছু পাওয়া যায়নি — অন্য কিছু লিখে দেখুন</div>
-      ${(d.aboutText||(d.whyUs&&d.whyUs.length))?`<div class="section-card reveal" id="sec-about"><div class="section-title"><span class="section-icon">🏪</span>আমাদের সম্পর্কে</div>${d.aboutText?`<div class="about-p">${d.aboutText}</div>`:''}${(d.whyUs&&d.whyUs.length)?`<div style="font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:15px;line-height:1.6;color:var(--maroon);margin:6px 0 8px;">⭐ কেন আমাদের বেছে নেবেন?</div><div class="why-grid">${d.whyUs.map(w=>`<div class="why-row"><span class="tick">✓</span>${w}</div>`).join('')}</div>`:''}</div>`:''}
+      ${(d.aboutText||(d.whyUs&&d.whyUs.length))?`<div class="section-card reveal" id="sec-about"><div class="section-title"><span class="section-icon">🏪</span>আমাদের সম্পর্কে</div>${d.aboutText?`<div class="about-p">${bn(d.aboutText)}</div>`:''}${(d.whyUs&&d.whyUs.length)?`<div style="font-family:'Baloo Da 2',sans-serif;font-weight:700;font-size:15px;line-height:1.7;color:var(--maroon);margin:6px 0 8px;">⭐ কেন আমাদের বেছে নেবেন?</div><div class="why-grid">${d.whyUs.map(w=>`<div class="why-row"><span class="tick">✓</span>${bn(w)}</div>`).join('')}</div>`:''}</div>`:''}
       <footer>
         <div class="cta-row">${phoneTel?`<a class="cta primary" href="tel:${phoneTel}">☎️ কল করুন</a>`:''}${whatsapp?`<a class="cta secondary" href="${waLink(whatsapp,orderMsg)}" target="_blank" rel="noopener">💬 WhatsApp</a>`:''}</div>
         <div class="cta-row2">
@@ -251,7 +264,7 @@ function renderPage(slug,d){
     </div>
   `;
 
-  if(d.ticker&&d.ticker.length){const tt=document.getElementById('ticker-track');const h=d.ticker.map(t=>`<span>${t}</span>`).join('');tt.innerHTML=h+h;}
+  if(d.ticker&&d.ticker.length){const tt=document.getElementById('ticker-track');const h=d.ticker.map(t=>`<span>${bn(t)}</span>`).join('');tt.innerHTML=h+h;}
 
   const infoCard=document.getElementById('info-card');
   let infoHtml='';
@@ -278,24 +291,24 @@ function renderPage(slug,d){
   sections.forEach(sec=>{
     const a=document.createElement('a');a.className='tab';a.href='#'+sec.id;a.dataset.target=sec.id;a.textContent=(sec.icon||'📋')+' '+sec.title;nav.appendChild(a);
     const wrap=document.createElement('section');wrap.className='section-card reveal';wrap.id=sec.id;
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">${sec.icon||'📋'}</span>${sec.title}</div>`+(sec.items||[]).map(it=>{
-      const name=(it.name||'').toString();
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">${sec.icon||'📋'}</span>${bn(sec.title)}</div>`+(sec.items||[]).map(it=>{
+      const name=bn((it.name||'').toString());
       const price=it.price;
-      const searchKey=name.trim().toLowerCase();
-      return `<div class="item" data-name="${searchKey}" data-order-name="${name}" data-order-price="${(price||'').toString().replace(/[^0-9]/g,'')}"><span class="item-check" role="checkbox" aria-checked="false"></span><span class="item-name">${name}</span>${price?`<span class="item-price">৳ ${price}</span>`:''}</div>`;
+      const searchKey=(it.name||'').toString().trim().toLowerCase();
+      return `<div class="item" data-name="${searchKey}" data-order-name="${(it.name||'').toString()}" data-order-price="${(price||'').toString().replace(/[^0-9]/g,'')}"><span class="item-check" role="checkbox" aria-checked="false"></span><span class="item-name">${name}</span>${price?`<span class="item-price">৳ ${price}</span>`:''}</div>`;
     }).join('');
     sroot.appendChild(wrap);
   });
 
   if(d.bestSellers&&d.bestSellers.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal card-gold';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🌟</span>সর্বাধিক অর্ডারকৃত</div>`+d.bestSellers.map(r=>`<div class="row-flex"><span>${r.label}</span><span>${r.value}</span></div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🌟</span>সর্বাধিক অর্ডারকৃত</div>`+d.bestSellers.map(r=>`<div class="row-flex"><span>${bn(r.label)}</span><span>${bn(r.value)}</span></div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.offers&&d.offers.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal card-maroon';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🎉</span>আজকের বিশেষ অফার</div>`+d.offers.map(o=>{const live=o.liveWindow&&isWithinHourWindow(o.liveWindow[0],o.liveWindow[1])?'<span class="live-tag">🔥 এখন সক্রিয়</span>':'';return `<div class="row-plain">${o.text} ${live}</div>`;}).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🎉</span>আজকের বিশেষ অফার</div>`+d.offers.map(o=>{const live=o.liveWindow&&isWithinHourWindow(o.liveWindow[0],o.liveWindow[1])?'<span class="live-tag">🔥 এখন সক্রিয়</span>':'';return `<div class="row-plain">${bn(o.text)} ${live}</div>`;}).join('');
     sroot.appendChild(wrap);
   }
 
@@ -307,44 +320,44 @@ function renderPage(slug,d){
     rows.push('⏰ '+(sch.hoursShort || (String(sch.openHour||0).padStart(2,'0')+':'+String(sch.openMinute||0).padStart(2,'0')+' – '+String(sch.closeHour||0).padStart(2,'0')+':'+String(sch.closeMinute||0).padStart(2,'0'))));
     if(sch.closedWeekday>=0) rows.push('🔴 '+WEEKDAY_NAMES[sch.closedWeekday]+' সাপ্তাহিক ছুটি');
     const wrap=document.createElement('section');wrap.className='section-card reveal card-teal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🕒</span>ব্যবসা পরিচালনার সময়সূচি</div>`+rows.map(r=>`<div class="row-plain">${r}</div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🕒</span>ব্যবসা পরিচালনার সময়সূচি</div>`+rows.map(r=>`<div class="row-plain">${bn(r)}</div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.staff&&d.staff.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">👥</span>${d.staffSectionLabel||'স্টাফ তালিকা'}</div>`+d.staff.map(s=>`<div class="item"><span class="item-name">${s.name}</span>${s.role?`<span class="item-price">${s.role}</span>`:''}</div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">👥</span>${bn(d.staffSectionLabel||'স্টাফ তালিকা')}</div>`+d.staff.map(s=>`<div class="item"><span class="item-name">${bn(s.name)}</span>${s.role?`<span class="item-price">${bn(s.role)}</span>`:''}</div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.branches&&d.branches.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🏢</span>শাখা তালিকা</div>`+d.branches.map(b=>`<div class="item" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="item-name">${b.name}</span><span style="font-size:11.5px;line-height:1.6;color:#7a6c60;">${b.address||''}${b.phone?' · '+b.phone:''}</span></div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🏢</span>শাখা তালিকা</div>`+d.branches.map(b=>`<div class="item" style="flex-direction:column;align-items:flex-start;gap:2px;"><span class="item-name">${bn(b.name)}</span><span style="font-size:11.5px;line-height:1.8;color:#7a6c60;">${bn(b.address||'')}${b.phone?' · '+b.phone:''}</span></div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.links&&d.links.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🔗</span>গুরুত্বপূর্ণ লিংক</div>`+d.links.map(l=>`<a class="item" style="text-decoration:none;color:inherit;" href="${l.url}" target="_blank" rel="noopener"><span class="item-name">${l.label}</span><span class="item-price">↗</span></a>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🔗</span>গুরুত্বপূর্ণ লিংক</div>`+d.links.map(l=>`<a class="item" style="text-decoration:none;color:inherit;" href="${l.url}" target="_blank" rel="noopener"><span class="item-name">${bn(l.label)}</span><span class="item-price">↗</span></a>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.notices&&d.notices.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">📢</span>নোটিশ / ঘোষণা</div>`+d.notices.map(n=>`<div class="row-plain">📌 ${n.text}${n.date?` <span style="color:#a89a8c;font-size:11px;">(${n.date})</span>`:''}</div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">📢</span>নোটিশ / ঘোষণা</div>`+d.notices.map(n=>`<div class="row-plain">📌 ${bn(n.text)}${n.date?` <span style="color:#a89a8c;font-size:11px;">(${n.date})</span>`:''}</div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.reviews&&d.reviews.length){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">💬</span>কাস্টমার রিভিউ</div>`+d.reviews.map(r=>`<div class="review-card"><div class="review-top"><span class="review-name">${r.name}</span><span class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span></div><div class="review-text">${r.text}</div></div>`).join('');
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">💬</span>কাস্টমার রিভিউ</div>`+d.reviews.map(r=>`<div class="review-card"><div class="review-top"><span class="review-name">${bn(r.name)}</span><span class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</span></div><div class="review-text">${bn(r.text)}</div></div>`).join('');
     sroot.appendChild(wrap);
   }
 
   if(d.bookingText){
     const wrap=document.createElement('section');wrap.className='section-card reveal';
     const bLabel = d.bookingSectionLabel||'বুকিং';
-    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🎟️</span>${bLabel}</div><div class="booking-p">${d.bookingText}</div><a class="booking-btn" href="${waLink(whatsapp,bookingMsg)}" target="_blank" rel="noopener">💬 WhatsApp-এ ${bLabel}</a>`;
+    wrap.innerHTML=`<div class="section-title"><span class="section-icon">🎟️</span>${bn(bLabel)}</div><div class="booking-p">${bn(d.bookingText)}</div><a class="booking-btn" href="${waLink(whatsapp,bookingMsg)}" target="_blank" rel="noopener">💬 WhatsApp-এ ${bn(bLabel)}</a>`;
     sroot.appendChild(wrap);
   }
 
